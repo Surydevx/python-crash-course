@@ -59,4 +59,29 @@ alien_0["points"]# why this doesn't get's printed? like i was expecting '5' as a
 print(alien_0["points"])# prints value which key "points" holds in the dictionary.
 del alien_0['points']# okay, so this is the syntax. you just need key you want to delete and the name of dictionary.
 print(alien_0)
-# the del statement deletes the key we specify and the value associated with in the dictionary.
+# the del statement deletes the key we specify and the value associated with in the dictionary, though it is deleted permanently so be sure.
+"""
+alien_0 = {'color': 'green', 'speed': 'slow'}
+print(alien_0['points'])# will print error as no key exists with the name "points"
+"""
+# output
+"""
+Traceback (most recent call last):
+File "alien_no_points.py", line 2, in <module>
+print(alien_0['points'])
+~~~~~~~^^^^^^^^^^
+KeyError: 'points'
+"""
+# accessing dictionary values via specifying key's has helped us accessing the dictionary, ut what if you asked the dcitionary for a key-value pair that doesn't exists? that would cause interpreter errors.
+
+# so to save our asses from above problem we will use dictiioary method, called "get()"
+"""
+alien_0 = {'color': 'green', 'speed': 'slow'}
+point_value = alien_0.get('points', 'No point value assigned.')
+print(point_value)
+""" 
+# the syntax for "get()" method is "dict_name.get("searched_key","message to be displayed if the key isn't found.")" the get method gives a graceful message instead a interpreter crash.
+#If you leave out the second argument in the call to get() and the key doesn’t exist, Python will return the value None. The special value None means “no value exists.”This is not an error: it’s a special value meant to indicate the absence of a value.
+
+#looping through a dictionary
+# we have looped through a dictionary earlier, though theres a small catch
