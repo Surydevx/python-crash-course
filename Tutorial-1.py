@@ -5,7 +5,7 @@ print(x)# print function prints values of variables too.but how?
 # variables aren't container for data in python they are just a mere label (label=name),actually variables are just name you can assign to container in ram storing certain values.
 # there are a lot of built in data types in python...
 """strings as a data type"""
-x = "hello the string must be encoded in quotes both single or double quotes works"
+x = "hello the string must be encoded in quotes, both single or double quotes works"
 print(x[0])# we can just use print function to print values of specific terms of string data type
 #string data type works like an array. i.e. stores data as a sequence of characters.
 
