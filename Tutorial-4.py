@@ -84,4 +84,167 @@ print(point_value)
 #If you leave out the second argument in the call to get() and the key doesn’t exist, Python will return the value None. The special value None means “no value exists.”This is not an error: it’s a special value meant to indicate the absence of a value.
 
 #looping through a dictionary
-# we have looped through a dictionary earlier, though theres a small catch
+# we have looped through a dictionary earlier, though theres a small catch, we have a diff approach this time.
+# using two variable for loop along with "item()" method..called sequential unpacking.
+user_0 = {
+'username': 'efermi',
+'first': 'enrico',
+'last': 'fermi',
+}
+for key, value in user_0.items():# we have two looping variables though they kind of proceed in like a pair(what i mean here is they both gets corresponding value at the same time.). Good technique..
+# we are using items() method, which is a method of dictionary, and what it does is it returns a tuple of key-value pairs on each iteration on demand by for loop, which they gets assigned to to the two looping variables.
+ print(f"\nKey: {key}")
+ print(f"Value: {value}")
+# why this method is different? yk by default when we use for loop for dictionaries, see example in line 15, the loop variable only loops with the keys, not the values....though we could engineer same output from that method. It comes down to personal preference, though i personally feel that using "items()" is cleaner approach that forces us to think in a new direction that using two variables  is possible.
+# I am kind of unsatisfied with the explanation...so i would be diving more deep.
+# so, i came to few revelations that dictionary actually remembers the order in which you put key-value pairs, why this important? cause the book i am following just tripped me cause it was kind of old and before version of python like 3.7 or something the dictionary didn't remembered the ordered in which u placed them, what that meant for u was..when using for loop to print every key-value pairs of the dictionary you could get totally scrambled order in output while knowing that this isn't the order you placed pairs into dictionaries.
+
+# So what we are loooking at here is a mix of two concepts, used iplicityly w/o mentioning by the author at this level.
+
+#1. sequence unpacking
+#2. Dictionary view objects, 
+
+# sequencce unpacking 
+#
+# it is a method by which we can assign two or more variable values from an iterable data type like sttring,list,tuple,set,frozenset in a single line.
+
+# Basic Unpacking
+
+student_info = ("Alice", 24, "Computer Science")# we used tuple bbut any iterable data type could be used.
+
+name, age, major = student_info# we assigned  values to 3 variables considering the number of elements of tuple..yep both numbers  should be same or otherwise python interpreter will throw and error.
+
+print(name)  # Output: Alice
+print(age)   # Output: 24
+print(major) # Output: Computer science.
+
+# there would be a seperate tutorial on this  sequence unpacking for now this much knowledge on topic should be enough.
+
+# dictionary view objects- there are three methods for dictionary data type and upon calling these method these  method invokes dictionary view class which in turn creates the dictionary view object actuall memory of the host systemn which is named  differently to whichever dictionary method called it..
+#keys()-dictionary view objects callled as "dict_keys"
+#values()-dictionary view objects callled as "dict_values"
+#items() - dictionary view objects callled as "dict_items"
+# further exploration of the topic....
+# None of the dictionary view objects holds  data, they only hold addresses of the  actual dictionary objects, and only returns data from dictionary upon request.
+# dict_items= it handles data in a tuple data type whenever for loop asks for it using iterator protocol and since dict_items itself doesn't hold a static copy of the dictioary but instead use pointers  it can dynamically access the dictionaory using pointers thus after updation of a dictionaries content immediately we can access the new key-value pair.
+# keys() method
+# this method initiates the dict_keys object which upon request by for loop gives keys one by one of dictionary.
+# values() method
+# this method intiates the dict_values object which upon request by for loop gives values one by one from dictionary.
+
+# Notes- since by default for loop loops over keys of a dictionary..you actuallly don't need to use keys method.
+
+# i gave a thought why dict_items gives us key-value pair in a tuple form? findings are shocking! listen - out of all the data type tuple is the only data type which is immuatble, is ordered and keeps the original data type. for example...immutable data types are string, forzenset, tuple. but forzenset is not ordered and it enforces uniquenness (that's if you had your key-value pairs as same, frozenset would literally just one entry and would keep only unique entry) and understand that string and tuples are ordered and immutable....but string enforces all data types into strings...which causes hard to find bugs....so tuple is the natural and only choice of data type.
+# why immutabble is so necessary.? i gave it a thought...my obv and first reaction was duh cause of security? you don't want your data to get change in middle of dict_items object fetching data from actual dictionary..but it kinda serves this purpose instead it goes this even further, it is because saving us from  side-effects of abstraction(thanks to python devs.) that's how they saved us with this immutability concept. what if you had somethhing in your programe going on which was modifying that data you just called using "items()" method.
+#  see this....
+user_env = {'os': 'Arch Linux'}
+
+# Imagine this gives you a list instead of a tuple!
+for pair in user_env.items(): 
+ # pair is now ['os', 'Arch Linux']
+
+ # What happens if you as a developer writes this line by accident?
+ """
+ pair[0] = 'hacked_key'
+ """
+
+# why do we need ordered data type? you might asks? reason is if you used for loop on "dictionary.items()" then dict_items object would be initialied in memory and would return key-value pairs. and if it gave it in a data type which doesn't respect orders then ? you could get value-key pair and looping variables will get opposite values(not exactly opposite cause you would never know when an unordered data type would give data in same order and when not in an same order causing unpredictable behaviour...) and thus we use tuples where strict indexing is necessary...0 represents key and 1 index represents value..
+#why do we not data type like frozenset? frozenset has immutability...the reason is that this data type is unordered. and more problematic than that it strictly enforces that data must be unique, and this is a problematic behaviour in a case that if your key and value are same? the forzenset would lterally delete an extra copy...causing your programme to fail critically
+# Fundamentally dictionaries in python are hash table, more details would be in a seperate tutorials.(this point is for my own referennce to dig more into these topics.)
+
+
+#=====================================================
+# now's time for code we been doing a lot of theory stuff "# Ref: Charlie Day conspiracy board meme from It's Always Sunny in Philadelphia."
+#=====================================================
+# how do i know that why and how this much. about items method?, behold and see this...
+
+# 1. Define the original dictionary
+user_env = {
+    'os': 'Arch Linux', # Yes, i use arch btw.
+    'shell': 'Zsh',
+    'editor': 'Nvim'
+}
+
+# items() method does not copy the dictionaries data into varialble; it's a reference to actual data in the dictionary.
+view = user_env.items()
+
+
+print("==== \"View\" variable points to a dynamic dictionary view object===") # dynamic refers to the below behaviour
+
+# "Modifying the dictionary after we have declared the variable "view" and saved the value in variable." ~ it is called dynammic cause if it was static copy then you won't  get the output you are getting at line 169.
+user_env['terminal'] = 'Alacritty'
+
+# The "view" reflects the change instantly because it points directly to user_env
+print(view)
+
+# Output: dict_items([('os', 'Arch Linux'), ('shell', 'Zsh'), ('editor', 'Nvim'), ('terminal', 'Alacritty')]),this shows that output of dict_item looks like a list of tuples..and every tuple denotes key-value pair in the order they will written in dictionary and this output proves that printing "view" variable doesn't hold full data they are just refferences to original dictionary as just after editing the data in main dictionary it autmatically reflects the value of variable "view". 
+
+"""
+print(view[0]) #problematic code! Running thhis would cause errors.
+"""
+
+"""
+  File "/home/surya/python-project/python-crash-course/Tutorial-4.py", line 176, in <module>
+    print(view[0])
+          ~~~~^^^
+TypeError: 'dict_items' object is not subscriptable
+""" # this is the error you get....mainly because dict_items gives output using iterator protocol :) and indexing fails as it doesn't gives any output when gave any index or rather doesn't know how to process that info, so we use next()or loops to get tuples from dict_items..haha(i am happy for some reason.)
+## this also proves that "view" isn't an list, as if it would have,  we would have gotten some output.
+
+# i have a code which is kinda creepy, looks simple but reveals so much about he code.
+
+"""
+my_dict = {"A": 1, "B": 2}
+
+for key, value in my_dict.items():
+    my_dict["C"] = 3  # Triggers dynamic hash table resizing in RAM!
+    print(key, value)
+"""
+#this is a problematic 
+"""
+Traceback (most recent call last):
+  File "/home/surya/python-project/python-crash-course/Tutorial-4.py", line 182, in <module>
+    for key, value in my_dict.items():
+                      ~~~~~~~~~~~~~^^
+RuntimeError: dictionary changed size during iteration
+"""# i must look into hash table problem and how it affects above behaviour and how dictionary and why this error  popped up.
+## some more topic completion aside from conspiracy theories.
+# we can use "sorted()"" function to present them in an alphabetical order despite whatever the order dictionary was written, here's how would u do that.
+
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+}
+
+# "sorted()" function sorts the keys in an alphabetical order before giving them to for loop, i don't understand how this works...as dictionaries specifically follows iterator protocol in loops like for loop....but if we applly a fuction we effectively saying that sorted function first stores tha keys  in somewhere and then sorts themm into alphabetical order but sorted function is a function..it's not a variable whom we can store any value? wait..i remembered that functions in pythonn are also objects instantiating from inbuilt class in python called as function, could that object have sa=ome variable? idk.
+for name in sorted(favorite_languages):
+    print(f"{name.title()}, thank you for taking the poll.")
+#for now this seems to work but i will dig onto this in future.
+## Looping through values of a dictionary.
+# using "values()" method to grab only values of dictionary key-value pairs.
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+}
+
+print("The following languages have been mentioned:")
+
+# "set()" function makes sure that there are no duplicates before loop starts, main risk is we are using this data type conversion into set is because we don't want duplicating values to haunt us...though using set gives us a tradeoff that now our output won't be ordered :) (hahha i am even more happy)
+for language in set(favorite_languages.values()):
+    print(language.title())
+# output - 
+"""
+C
+Python
+Ruby
+"""
+
+print(favorite_languages.values()) # by default these "values()" are presented to us as list of values but that's not the case as how computer see this.
+# output -"dict_values(['python', 'c', 'ruby', 'python']) "
+# even now to access each one of these values we are seeing, the computer needs to go through specific iterator protocol to get these values...we are able to see these values cause python core devs thought that this would help us.and it does. lmao.
+
+# nesting is remained fro future incorporations, as we have done already massive work. thanks for reading this fck ahh tutorial.
