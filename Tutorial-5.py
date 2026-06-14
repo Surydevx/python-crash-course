@@ -138,14 +138,50 @@ confirmed_users = []
 
 # Verify each user until there are no more unconfirmed users.
 # Move each verified user into the list of confirmed users.
-while unconfirmed_users: # this loop evvaluates to true until "uncomfirmed_users" list becomes empty.
+while unconfirmed_users: # this loop evaluates to true until "uncomfirmed_users" list becomes empty.
 
- current_user = unconfirmed_users.pop()# using pop methhod we already learnt.
+ current_user = unconfirmed_users.pop()# we are using pop methhod here which we already learnt.
 
  print(f"Verifying user: {current_user.title()}")
- confirmed_users.append(current_user)
+ confirmed_users.append(current_user)# appending a list, that is adding  current_user to list "confirmed_user".
 
 # Display all confirmed users.
 print("\nThe following users have been confirmed:")
 for confirmed_user in confirmed_users:
  print(confirmed_user.title())
+
+# Removing All Instances of Specific Values from a List
+# we already learned the "remove()" function but if we had multiple instaces of something which we want to remove from list? see this  example.
+pets = ['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
+print(pets)
+while 'cat' in pets:
+ pets.remove('cat') # it removes cats from the list named pets, and  since this looop will continue till all instances of 'cats'  aren't  removed from the list.
+
+print(pets)
+#output-
+"""
+['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
+['dog', 'dog', 'goldfish', 'rabbit']
+"""
+# Filling a dictionary with user input.
+
+responses = {}
+# Set a flag to indicate that polling is active.
+polling_active = True
+
+while polling_active:
+# Prompt for the person's name and response.
+ name = input("\nWhat is your name? ")
+ response = input("Which mountain would you like to climb someday? ")
+
+# Store the response in the dictionary.
+ responses[name] = response
+# Find out if anyone else is going to take the poll.
+ repeat = input("Would you like to let another person respond? (yes/ no) ")
+ if repeat == 'no':
+  polling_active = False
+# Polling is complete. Show the results.
+print("\n--- Poll Results ---")
+for name, response in responses.items():
+ print(f"{name} would like to climb {response}.")
+ 
