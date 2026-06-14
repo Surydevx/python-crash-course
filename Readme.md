@@ -1,20 +1,29 @@
-Hello fella's,
+# Python Crash course
 
-I am learning python in this repo and thus these are my personal notes and my hands on attempt of how i processed the topics in real time as i worked through.
+Hello Fellas,
 
-Though these are my personal notes, i made sure that anyone learning python from these notes gets proper understanding of the language.
+I will be learning Python in this repository. These are my personal notes and a hands-on log of how I process topics in real-time as I work through them. 
 
-I apologize of the format of the tutorial being a python file, though consider these individual python files as long conversational style of learning.
+Even though these are my personal notes, I have made sure that anyone learning Python from them will get a solid understanding of the language's fundamentals.
 
-My sources
+I apologize for the tutorial format being purely Python files, but you can think of these individual `.py` files as a long, conversational style of learning. 
 
-1. Official python language documentation.
-2. Python Crash Course - The worlds most fammous book to start learning python.
-3. CS50P- introduction to programming with python
-4. W3 Schools
+## My Sources
 
-These notes aren't perfect right now, but with time they will get optimised and have more better understanding of language.
+1. [Official Python Language Documentation](https://docs.python.org/3/)
+2. [Python Crash Course](https://nostarch.com/python-crash-course-3rd-edition) - The world's most famous book to start learning Python.
+3. [CS50P](https://cs50.harvard.edu/python/) - Introduction to Programming with Python.
+4. [W3Schools Python Tutorial](https://www.w3schools.com/python/)
 
-why? why write a tutorial for an python programmming in github when so many clean and polished content is available? if you are pondering this question, i am doing the same.
+These notes aren't perfect right now, but over time they will be optimized and will reflect a deeper understanding of the language.
 
-Happy Learning !!!
+## Why Yet Another Python Tutorial?
+
+You might be wondering: with hundreds of Python tutorials already out there, why post another one? I am writing these tutorials for two main reasons:
+
+1. **For my own benefit:** Writing down your thoughts helps in organizing them and mastering the concepts.
+2. **For my friends:** I have friends who want to learn Python, so this entire tutorial is written as if I am teaching the language directly to them.
+
+Grab a cup of coffee and join along. 
+
+Happy Learning!!!
