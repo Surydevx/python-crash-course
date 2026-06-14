@@ -151,6 +151,7 @@ for confirmed_user in confirmed_users:
  print(confirmed_user.title())
 
 # Removing All Instances of Specific Values from a List
+
 # we already learned the "remove()" function but if we had multiple instaces of something which we want to remove from list? see this  example.
 pets = ['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
 print(pets)
@@ -163,25 +164,29 @@ print(pets)
 ['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
 ['dog', 'dog', 'goldfish', 'rabbit']
 """
-# Filling a dictionary with user input.
+
+## Filling a dictionary with user input.
 
 responses = {}
 # Set a flag to indicate that polling is active.
 polling_active = True
 
 while polling_active:
-# Prompt for the person's name and response.
  name = input("\nWhat is your name? ")
  response = input("Which mountain would you like to climb someday? ")
 
 # Store the response in the dictionary.
  responses[name] = response
+
 # Find out if anyone else is going to take the poll.
  repeat = input("Would you like to let another person respond? (yes/ no) ")
  if repeat == 'no':
   polling_active = False
+
 # Polling is complete. Show the results.
 print("\n--- Poll Results ---")
 for name, response in responses.items():
  print(f"{name} would like to climb {response}.")
- 
+
+# just like a charm we added content to the dictionary on a fly using while loops and flags, though i will dig more into why it wasn't possible with for loop?
+#<----------------end of document---------------------->
