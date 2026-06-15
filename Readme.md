@@ -1,8 +1,8 @@
-# Python Crash course
+# Python Crash Course
 
 Hello Fellas,
 
-I will be learning Python in this repository. These are my personal notes and a hands-on log of how I process topics in real-time as I work through them. 
+I am learning Python in this repository. These are my personal notes and a hands-on log of how I process topics in real-time as I work through them. 
 
 Even though these are my personal notes, I have made sure that anyone learning Python from them will get a solid understanding of the language's fundamentals.
 

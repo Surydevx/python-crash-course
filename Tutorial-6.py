@@ -109,3 +109,37 @@ print(supposed_to_be_4)
 4
 None
 """
+# wait how one extra 4 came? and why is it "none"? i iterally asssigned the output of the function to the variable? this  is # 1'st  rookie  mistake.(i did this so u don't have to)
+# explanation-
+# first  4 came  from literally calling the  function.
+# second 4 came due to a more interesting behaviour of python interpreter - listen python f]processes the assignment operator a bit differenntly, it first evaluates the right hand side and then after evlauating the right side assigns the value to the left side, so  as soon as python went to left side  it encountered a function, it went to definition of the function and there python just saw the print(2+2), see  on line 104, and it just blasted the output on the terminal. and actually since in function we haven't used return keyword and thus function returns none and saves this in variable and thus the mystery is resolved.
+# what is return? - The value that the function returns is called a return value. The return statement takes a value from inside a function and sends it back to the line that called the function.
+
+# returning a simple value
+def get_formatted_name(first_name, last_name):
+ """Return a full name, neatly formatted."""
+
+ full_name = f"{first_name} {last_name}"
+
+ return full_name.title()
+
+musician = get_formatted_name('suryansh', 'sharma')
+print(musician)
+# The function returns a string to the variable "musician", when argument "suryansh" and "sharma" were passed to the function, mainly return is used  for taking output from a function to capture, store, or manipulate that data.
+#When you call a function that returns a value, you need to provide a variable that the return value can be assigned to.
+# Optional arguments in the function,,
+# making arumments optional is not very native to python language but is an engineered workaround, see the code below
+# observe how we just assigned an default empty string to middle name(ofc middle name aren't necessary and you would find ppls with no middle name), and thus if you don't give function any middle name string it would go on and work without that.
+def get_formatted_name(first_name, last_name, middle_name=''):
+ """Return a full name, neatly formatted."""
+
+ if middle_name:
+  full_name = f"{first_name} {middle_name} {last_name}"
+
+ else:
+  full_name = f"{first_name} {last_name}"
+ return full_name.title()
+musician = get_formatted_name('jimi', 'hendrix')
+print(musician)
+musician = get_formatted_name('john', 'hooker', 'lee')
+print(musician)

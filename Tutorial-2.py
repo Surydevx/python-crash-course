@@ -1,4 +1,4 @@
-# This is tutorial 2, this portion will cover chapter 4 named as "LOOPS"
+# This is tutorial 2, this portion will cover "LOOPS"
 
 magicians = ['alice', 'david', 'carolina']
 
@@ -69,7 +69,7 @@ players = ['charles', 'martina', 'michael', 'florence', 'eli']
 print(players[0:3])
 # syntax is "list_name[starting_index,stopping_index]"
 print(players[-1:-4])# empty string as output.
-print(players[-4:-1]) # got it! the start index must represent element on left side compared to stop index, though whatever indexing method you use, stop element must be on right side of the start element, the primaary reason is that lists are unidirectioal, that is they flow left to right...
+print(players[-4:-1]) # got it! the start index must represent element on left side compared to stop index, though whatever indexing method you use, stop element must be on right side of the start element, the primary reason is that lists are unidirectioal, that is they flow left to right...
 
 # copying a list
 # if we do slicing of a string such that we don't specify starting index and stopping index and store it in a seperate variable name, the whole list would get copy.

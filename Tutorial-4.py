@@ -247,4 +247,4 @@ print(favorite_languages.values()) # by default these "values()" are presented t
 # output -"dict_values(['python', 'c', 'ruby', 'python']) "
 # even now to access each one of these values we are seeing, the computer needs to go through specific iterator protocol to get these values...we are able to see these values cause python core devs thought that this would help us.and it does. lmao.
 
-# nesting is remained fro future incorporations, as we have done already massive work. thanks for reading this fck ahh tutorial.
+# nesting is remained for future incorporations, as we have done already massive work. thanks for reading this fck ahh tutorial.
