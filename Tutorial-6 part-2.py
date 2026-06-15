@@ -51,3 +51,96 @@ Making a 12-inch pizza with the following toppings:
 """
 #we will often see the generic parameter name *args, which collects arbitrary positional arguments.
 
+# Using Arbitrary Keyword Arguments
+
+# same idea as above but we will use dictionary instead of tuple.
+#use case of this? if you expect some kind of data from your programme but not sure exactly what kind of data would be passed ahead of time? in that case we provide a way for user to pass to as many key-value pair as they want..
+# we are seeing this example  where we would let user add as much as info about them as they want..
+
+def build_profile(first, last, **user_info):
+ """Build a dictionary containing everything we know about a user."""
+
+ user_info['first_name'] = first
+ user_info['last_name'] = last
+ return user_info
+
+user_profile = build_profile('albert', 'einstein',
+location='princeton',
+field='physics')
+print(user_profile)
+# ouput- 
+"""
+{'location': 'princeton', 'field': 'physics',
+'first_name': 'albert', 'last_name': 'einstein'}
+"""
+# my doubt why the  dictionary isn't showing the data in the order we gave the passed the argument to function.
+
+# "**user_info" generate a dictionary named as "user_info" whichh will contain any extra information given by user.
+#we  will often see the parameter name "**kwargs" used to collect nonspecific keyword arguments.
+
+# using modules.
+# A module is a normal ".py" file we write, a package is a collection of modules. and a library is a collection of packages.
+#we can use these  modules writtenn to use the functions written in them to reuse in our code w/o wriing everythimg from scratch by ourselves.
+# let's assume we write  a file called pizza.py
+"""
+def make_pizza(size, *toppings):
+    
+\"""Summarize the pizza we are about to make\"""
+
+ print(f"\nMaking a {size}-inch pizza with the following toppings:")
+ for topping in toppings:
+  print(f"- {topping}")
+"""
+# let's use a seperate file..named as "making_pizzas.py" in the same directory(can call it folder) as the pizza.py
+"""
+import pizza
+pizza.make_pizza(16, 'pepperoni')
+pizza.make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+"""
+# yes, we imported the module and used the function of module named pizza and passed the argument in function directly, what is "pizza.make_pizza()" since "make_pizza()" is a method of "pizza" module,  we can use the function from an imprted library like this..
+# When Python reads the code in file "making_pizzas.py", the line import pizza tells Python to open the file pizza.py and copy all the functions from it into this ""making_pizzas.py"" programme.
+# if we used this approach to import whole module "import module", all of it's functions gets imported to the current programme and we can use  all of it's function using "module_name.function_name()" this syntax.
+
+# Importing Specific Functions
+# yes, we can also do this, using the syntax "from module_name import function_name" and we can also import multiple functions from the same module using syntax "from module_name import function_0, function_1, function_2", when we use this  appproach to import function we can directly use the function name to pass the argument no need to use the dot operator.
+# Using as to Give a Function an Alias
+#If the name of a function we’re importing might conflict with an existing name in our program, or if the function name is long, you can use a short, unique alias (an alternate name similar to a nickname) for the function. we’ll give the function this special nickname when you import the function.
+# see example.
+"""
+from pizza import make_pizza as mp
+mp(16, 'pepperoni')
+mp(12, 'mushrooms', 'green peppers', 'extra cheese')
+"""
+# the general syntax to give an allias is "from module_name import function_name as fn"
+
+# Using as to Give a Module an Alias
+# we can give module an alias too.
+#see the code
+"""
+import pizza as p
+p.make_pizza(16, 'pepperoni')
+p.make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+"""
+#general syntax for aliasing module name "import module_name as mn"
+# the reason to give alias to an module is because when we we use "pizza.make_pizza()" and when we use "p.make_pizza()", the second one seems better for lazy ppls like me.
+# note the giving module name an alias doesn't changes the name of functions in module.
+# Importing All Functions in a Module
+# we can import every function from module using * operator.
+"""
+from pizza import *
+make_pizza(16, 'pepperoni')
+make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+"""
+# and since all function would be imported we can use those functions natively without the dot operator, but the risk is the functions in that module is of same name as a function in our code, that could cause unexpected behaviour in code.. and we should generally avoid this habit when writing code in production.
+
+# btw, when we import large modules which we didn't wrote, it is possile that both module and your code has conflicting name of a function and then python will literally overwrite function.
+# some general note
+#1. If we specify a default value for a parameter, no spaces should be used on either side of the equal sign in the function definition.
+"""
+def function_name(parameter_0, parameter_1='default value')
+"""
+#2.The same convention should be used for keyword arguments in function calls:
+"""
+function_name(value_0, parameter_1='value')
+"""
+<-----------------end of document---------------->
