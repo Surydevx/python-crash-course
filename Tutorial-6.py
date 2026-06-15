@@ -185,8 +185,7 @@ greet_users(usernames)
 def print_models(unprinted_designs, completed_models):
  """
 Simulate printing each design, until none are left.
-Functions
-143Move each design to completed_models after printing.
+Move each design to completed_models after printing.
  """
  while unprinted_designs:
   current_design = unprinted_designs.pop()
@@ -204,3 +203,7 @@ completed_models = []
 
 print_models(unprinted_designs, completed_models)
 show_completed_models(completed_models)
+
+# here we are passing two list to two functions simultaneously.
+#Tbh i don''t feels that we have much to explain here, since it's just logical construct using whatever we have learned in previous lessons, let's move to new topic.
+#<------------------end of document-------------->
