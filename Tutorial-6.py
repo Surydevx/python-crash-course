@@ -8,17 +8,16 @@ A function is a self-contained block of parameterized, reusable code designed to
 def greet_user():# defining a function named "greet_user" and we generally pass input of a function in those brackets..
  """Display a simple greeting."""
  print("Hello!")# whenever this function would be initiated,  this block of code will get executed.
- return "hellow"
 greet_user()# we called the function as you noticed we could standalone directly..
 
 # The text on line 9 is a comment called a docstring, which describes what the function does. When Python generates documentation for the functions in your programs, it looks for a string immediately after the function's definition
-# in above example we didn't need it to give some input in parenthesis, though if the function needs some inpt to do it's ork, it would be passed into those parenthesis.
+# in above example we didn't need it to give some input in parenthesis, though if the function needs some input to do it's work, it would be passed into those parenthesis.
 #  this is modified example.
 def greet_user1(username):
  """Display a simple greeting."""
  print(f"Hello, {username.title()}!")
 greet_user1('jesse')
-# i changed the function name as it was overlapping with our previous function,  note that even if we do use conflicting function names(this  prolly would make code less readbale and understandable..) the python interpreter would  literally overwrite whatever code block you wrote under that function earlier,  but remember interpreter reads code from top to bottom....let's  infact use  conflicting functioin name.
+# i changed the function name as it was overlapping with our previous function,  note that even if we do use conflicting function names(this  prolly would make code less readable and understandable..) the python interpreter would  literally overwrite whatever code block you wrote under that function earlier,  but remember interpreter reads code from top to bottom....let's  infact use  conflicting functioin name.
 
 def greet_user1():
  """Display a simple greeting."""
@@ -33,3 +32,80 @@ Hello surya
 # Arguments vs. Parameters:
 # At the very basic level, a "Parameter" is a variable defined in the function's declaration (it acts as a placeholder for the actual input needed by the function). 
 # An "argument" is the actual value you pass into that parameter when you call the function.(remember during call of the function.)
+# how to pass arguments to functions.
+# there are mainly two ways you can do this,
+#1. positional arguments - sometimes function needs multiple arguments, then we create placeholders in function and give argument to function in the same order as we created our parameter. and changing the order may cause absurd behaviour..(it would literally take anything you give it happily)
+def describe_pet(animal_type, pet_name):
+ """Display information about a pet."""
+ print(f"\nI have a {animal_type}.")
+ print(f"My {animal_type}'s name is {pet_name.title()}.")
+
+describe_pet('hamster', 'harry')# passing the arguments in same order  as we intend to give to each parameter, be absolutely concered that the order in which you give argument to parameters matters.
+#2. keyword arguments- This style of passing multiple arguments is more structured and doesn't depends on you to remember the order(now you have to remember whole names of parameters hehe), what you do here is assign values to parameters in the function call, synntax is "function_name(parameter-1="some random  value",  parameter-2="some more random value")" this is the syntax here goes our example.
+def describe_pet(animal_type, pet_name):
+ """Display information about a pet."""
+ print(f"\nI have a {animal_type}.")
+ print(f"My {animal_type}'s name is {pet_name.title()}.")
+
+describe_pet(animal_type='hamster', pet_name='harry')# you get the syntax right? that's all this topic is.
+# note(not really an imp. one)- see you can calll function multiple times with passing same or different arguments each time.(common sense no?)
+def describe_pet(animal_type, pet_name):
+ """Display information about a pet."""
+ print(f"\nI have a {animal_type}.")
+ print(f"My {animal_type}'s name is {pet_name.title()}.")
+# calling the function two times with different arguments.
+describe_pet('hamster', 'harry')
+describe_pet('dog', 'willie')
+# see above example, the main reason the whole concept of defining functions in your code exists cuz of this. apparently save redundancy in your code.
+# apparently soon we will learn about modules  and we will import modules and learn how to use functions of modules in our code.
+# default value
+#When writing a function, you can define a default value for each parameter. If an argument for a parameter is provided in the function call, Python uses the argument value. If not, it uses the parameter’s default value, examaple for this is given below..
+def describe_pet(pet_name, animal_type='dog'):
+ """Display information about a pet."""
+ print(f"\nI have a {animal_type}.")
+ print(f"My {animal_type}'s name is {pet_name.title()}.")
+# default value is just us giving some value to function during time of definition of the concept, and this is pretty striaghtforward.
+describe_pet(pet_name='willie')
+# let;'s try with our diff function this concept and experiment with it.
+# now pay attention(or pay me) that this function absolutely needs argument ordered, you will ignore this thing and your  output will be messed up..
+def create_character( name ="john doe", role = "npc", weapon="none", level="he is everywhere"):# passing default values in function.
+ 
+ """Creates a profile for a new video game character."""
+ print(f"--- Character Profile ---")
+ print(f"Name:   {name.title()}")
+ print(f"Role:   {role.title()}")
+ print(f"Weapon: {weapon.title()}")
+ print(f"Level:  {level}")
+ print("-------------------------\n")
+
+# example 1: positional arguments (order is strictly matched)
+create_character('shadow', 'assassin', 'twin daggers', 15)
+
+# example 2: keyword arguments (order doesn't matter)
+create_character(level=99, name='gandalf', weapon='staff', role='mage')
+
+# example 3: mixing both type of argument passing.. (positional argument's must come first)
+create_character('arthur', 'knight', level=25, weapon='excalibur')
+# example 4: understanding default values.'
+create_character()# passing nothing,  now function will use default values.
+# example 5: if i give some argument but doesn't give some..then?
+create_character( "surya" , "admin" )# lmao this works. 
+
+# one very obvious thing you may encounter is that pizza without coke is impossible(not really but my personal preference.) in a similar manner you need to give function all the arguments it needs to work, in mundane words "the number of argument and number of parameters must be same."
+
+## return values of the function..
+# let me put in very brief, you call function directly...if you want to save the output of a function? how do u do that?
+# you may think ohh, we just have to do ...
+def some_function():
+ """literally this function will add 2+2"""
+ print(2+2)
+some_function()# will print 4
+# now try this
+supposed_to_be_4 = some_function()
+print(supposed_to_be_4)
+#output-
+"""
+4
+4
+None
+"""
