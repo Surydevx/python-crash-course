@@ -143,3 +143,64 @@ musician = get_formatted_name('jimi', 'hendrix')
 print(musician)
 musician = get_formatted_name('john', 'hooker', 'lee')
 print(musician)
+# Returning a dictionary.
+# as we undertsand function doesn't have any issues with returning us a dictionary or list see the examples.
+def build_person(first_name, last_name):
+ """Return a dictionary of information about a person."""
+
+ person = {'first': first_name, 'last': last_name}
+
+ return person
+musician = build_person('jimi', 'hendrix')
+print(musician)
+# you getting this right?, this is as simple as formatting your input into a dictionary. 
+# we can engineer this further to get data from user and store in a dictionary(which is an insanely fast data type and can store a lot of data), see this example.
+
+def build_person(first_name, last_name, age=None):
+ """Return a dictionary of information about a person."""
+ person = {'first': first_name, 'last': last_name}
+ if age:
+  person['age'] = age
+ return person
+musician = build_person('jimi', 'hendrix', age=27)
+print(musician)
+# in above code by default age is set to "NONE"  and in condition statements "NONE" evalautes to the boolean value "False" but if u pass age argument to function during the call of function the age parameter won't be "NONE" and thus boolean value of it won't be "False" and that's  how the logic of this code works.
+# "none" is used  when we don't want to assign no specific value to a variable yet instantiate it.
+
+
+#passing a list to a function as argument..
+
+def greet_users(names):
+ """Print a simple greeting to each user in the list."""
+ for name in names:
+  msg = f"Hello, {name.title()}!"
+  print(msg)
+usernames = ['hannah', 'ty', 'margot']
+greet_users(usernames)
+#whenever we input a list to a function, function gets direct access(reference pointer) to that list and in this example function gets input from list using iterator protocol and loops inside the  function keeps  iterating until list is exhausted.
+# okay so i learned something new, that since whenever a function is presented input with a list, it gets direct access over the list and hennce if the function edits the list, it would be permanent, as your original list would be changed since function doesn't creates a backup copy of the list.
+
+# modfying a list in a function.
+# Consider a company that creates 3D printed models of designs that users submit.
+def print_models(unprinted_designs, completed_models):
+ """
+Simulate printing each design, until none are left.
+Functions
+143Move each design to completed_models after printing.
+ """
+ while unprinted_designs:
+  current_design = unprinted_designs.pop()
+  print(f"Printing model: {current_design}")
+  completed_models.append(current_design)
+
+def show_completed_models(completed_models):
+ """Show all the models that were printed."""
+ print("\nThe following models have been printed:")
+ for completed_model in completed_models:
+  print(completed_model)
+
+unprinted_designs = ['phone case', 'robot pendant', 'dodecahedron']
+completed_models = []
+
+print_models(unprinted_designs, completed_models)
+show_completed_models(completed_models)
