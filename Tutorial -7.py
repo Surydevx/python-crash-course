@@ -18,21 +18,88 @@ class Dog:
  def roll_over(self):
   """Simulate rolling over in response to a command."""
   print(f"{self.name} rolled over!")
-# so what we did here is we made an class named "dog", and we used def keyword to define three funtios, "__init__()" , "sit()" and "roll_over()".
+
+# so what we did here is we made an class named "dog", and we used def keyword to define three functions which are technnically called as methods, "__init__()" , "sit()" and "roll_over()".
 # functions defined under a class are said as methods, they work and bheave exactly the same but they are special to an class and their object.
 # so, important things is whenever we try to instanntiate an object from a class, an under the hood method that python uses is called "__init__()" function, which ahs three parameters, self, name and age  in the above example,  bbut understand that  self must be the first parameter and whenever you will instantiate an object you won't be giving self parameter as argument, reasons is python uses a dunder method also known as double underscore method.
-#by default the name of class is written with capital first letter, maybe what we call as camel casing
+#by default the name of class is written with capital first letter, maybe what we call as pascalcase
 #This code is writeen by me on my phone, with termux, and proot-distro environment with fedora, i installed starship and nvim along with lazyvim for lazy coding.:)
 #how much overengineering u like? yess!
 # back to the topic.
 # instance variable vs vlass variable.
-# instance variables are variables whoch defines thr unique properties of an object.and on the other hand each object created from an class gets a copy of class variables, what are they? they are variables which are defined outside the  "__init__()" fnction.
+
+# instance variables are variables whoch defines thr unique properties of an object.and on the other hand each object created from an class gets a copy of class variables, what are they? they are variables which are defined outside the  "__init__()" method.
+
 # any instance variable under "__init__()" function must be declared using the syntax "self.instance_variable_name"
-# Any instance variable is acessible throught all tje functions created under class.
+
+# Any instance variable is acessible throught all the functions created under class.
+
 #and instance variables can be accessed by objects and thus are called attributes (man, this makes sense, these variables defines the objects uniqueness so these must be attribites of the object.)
+
 # self.name = name, is kinda sus, i will go deep down this topic.
 # the whole lifecycle of object creations. sit back and read.
+
 #Whenever an object is created, the dunder mthod "__new__()" asks the operating system for memory in ram for a new object and  allocates that memory and returns a pointer(reference) to that memory address. This pointer is passed to "__init__()""as a variable named as an argument of parameter named as "self". Writing "self.instance_variable = value"
-#Instead of rigid memory blocks almost all python objects have a hidden dictionary named as "__dict()__" on that memory address.
-#so whenever we are writing 
+#Instead of rigid memory blocks almost all python objects have a hidden dictionary named as "__dict__" on that memory address.
+
+#so whenever we are writing "self.name=name" what are we doing is it goes to the memory address reference stored in self, and accesses the  __dict__ hash map at that address and then it creates new key-value pair inside this dictionary, notice that in right side "name" is parameter and whenever an argument is passed for object creating then this argument value is assigned to the variable "self.name"(specifically, the variable_name will be written with self)
+
+#Essentially, self.balance = 100 translates internally to: self.__dict__['balance'] = 100,(we can notice that this key value pair is "instance_variable"= 100).
+
 # takes that parameter and stores it dynamically inside the object's internal dictionary (__dict__) located at that memory address.
+
+# I must look into __dict__, for now  we continue  with the rest of the topic.
+
+#object creation..
+# "object_name = class_name(argument-1, argument-2)"
+# whenever we create an object, the arguments passed for instance variables are stored in __dict__ of that  object in key-value pair format. under the memory issued by __new___ method.
+my_dog = Dog('Willie', 6)
+
+print(f"My dog's name is {my_dog.name}.")
+print(f"My dog is {my_dog.age} years old.")
+# to access the attributes use the syntax  "object_name.atrribute_name", (remember we were using this all along....haha). and to access the methods of an object. use syntax "object_name.method_name(some_argument_if required)".
+# as understandable we can create as  many objects froma class we wannt.
+# "self. means: "Access the permanent, hidden dictionary (__dict__) attached to the specific object in RAM.""
+# i kinda realised that every method defined in a class must have atleast first parameter named as self, why so ? i am not  sure rn either.
+
+# working with classes and instances.
+class Car:
+ """A simple attempt to represent a car."""
+ def __init__(self, make, model, year):
+  """Initialize attributes to describe a car."""
+  self.make = make
+  self.model = model
+  self.year = year
+ def get_descriptive_name(self):
+  """Return a neatly formatted descriptive name."""
+  long_name = f"{self.year} {self.make} {self.model}"
+  return long_name.title()
+
+my_new_car = Car('audi', 'a4', 2024)
+print(my_new_car.get_descriptive_name())
+# output- "2024 audi a4".
+
+# Setting a Default Value for an Attribute
+#When an object is created, attributes(simply means variables) can be defined without being passed in as parameters. These attributes can be defined in the __init__() method, where they are assigned a default valuue, example?
+class Car:
+
+ def __init__(self, make, model, year):
+  """Initialize attributes to describe a car."""
+  self.make = make
+  self.model = model
+  self.year = year
+  self.odometer_reading = 0
+ def get_descriptive_name(self):
+  """Return a neatly formatted descriptive name."""
+  long_name = f"{self.year} {self.make} {self.model}"
+  return long_name.title()
+
+ def read_odometer(self):
+  """Print a statement showing the car's mileage."""
+  print(f"This car has {self.odometer_reading} miles on it.")
+
+my_new_car = Car('audi', 'a4', 2024)
+print(my_new_car.get_descriptive_name())
+my_new_car.read_odometer()
+# to define an attribute with default value, don't assign it as a parameter in the __init()__ method, instead define it under __init__() method's code block with default value just as how we did it on line 91.
+# btw notice that above code snippet has a function named as "get_descriptive_name(self)" and it's return output is defined with return "keyword" and it's return value is "long_name.title()" and "long_name" itself is an variable of the function. if you don't know retrun keyword is used to define that what function will retrun to variiables or whenn print it....like basicallly what output it will give.
