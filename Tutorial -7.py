@@ -192,3 +192,4 @@ practice_track.play()
 #In short: * Overriding is a complete replacement of a behavior.super() is a delegation. It asks the parent to run its version of the code before (or after) the child runs its own unique steps.
 # super() is a built-in shortcut that temporarily bypasses the "Closest Instruction" rule (this is exactly whatt we just talked about a few lines ago in function overriding). It acts as a direct hotline to the Parent class. It means: "Go run the Parent's version of this method right now, then come back here so I can finish my specific task.
 # why use super(), cuz it basicallly allows us to reuse  the parent  class code without completely overwriting the when a new functionality is needed.
+#<---------------------end of document----------------------------->
