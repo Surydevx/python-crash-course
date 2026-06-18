@@ -81,4 +81,23 @@ print(len(pi_string))
 # everything is predictable and new code is line 75 , we have defined an empty string
 # See line 76 and 77, we have assigned a for loop on the output of the splitlines() method, and we know that this  method returns a list, and thus it means that for loop on line 76, would be looping on this list returned by method "splitlines()", and line 77 is simple, it just concatanates strings, and stores all lines in the variable name "pi_string", well rest of the code is simple.
 # btw in practice this method of string conncatannation is clunky, as strings are immutable to just add a new element to  a string, it recalculates the amount of memory it needs and  asks the os to gie it a new space, and can you imagine running this  loop for an large data?
-# Writing to a File
+# Writing to a File 
+# Once you have a path defined, you can write to a file using the write_text() method.
+#as understood we used the read_text() method and now we are using write_text() method.
+# btw these are methods of what class? i believe these are from class named "Path" which is a class written in pathlib module.
+"""
+from pathlib import Path
+path = Path('programming.txt')
+path.write_text("I love programming.")
+"""
+#If programming.txt does not exist at the specified path point in the drive, Python will ask the OS to create it and write string in it.
+
+#If programming.txt already exists, and it has 10,000 lines of highly valuable data inside it, write_text() will completely obliterate the entire file instantly, without asking for permission, and replace all 10,000 lines with "I love programming."
+
+#Also, after writing the string to the file, it makes sure the file is closed properly. Files that aren’t closed properly can lead to missing or corrupted data.
+
+# write_text() method operates in "Write" mode ('w'), which in C/Linux system calls literally means "truncate the file to zero bytes, then write the new data."
+
+#Python can only write strings to a text file. If we want to store numerical data in a text file, you’ll have to convert the data to string format first using the str() function.
+
+# To write data more than one line, you would need to store your string in a variable and then pass that variable into write_text()" method.
