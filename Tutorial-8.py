@@ -180,4 +180,61 @@ except Exception as e:
     # It allows you to inspect the exact error without crashing.
     print(f"I caught an unknown error: {type(e).__name__}")
 """
-# and then run the code each time you find a new bug or error. consider that this is a sbad practice in actual production env. as ig hides the acctual bugs the code might have.
+# and then run the code each time you find a new bug or error. consider that this is a bad practice in actual production env, as it hides the actual bugs the code might have.
+# btw, whenever you are reading the traceback  of interpreter, make sure that you focuson last line first cuz the real error is there often.
+"""
+from pathlib import Path
+path = Path('alice.txt')
+contents = path.read_text(encoding='utf-8')
+"""
+# see this is a different use of the same read_text method, we used "encoding='utf-8'", this argument is necessary when our systems default encoding doesn't matches enncoding of the file this function trying to read.
+#Failing Silently
+# sometimes you would want that your porgramme doens't print any error message  when it encounters a certain exception, then what you do is just raise an exception and just write "pass" into that exception.
+"""
+def count_words(path):
+#Count the approximate number of words in a file.
+try:
+--snip--
+except FileNotFoundError:
+pass
+else:
+--snip--
+"""
+# storing data
+# when we are taking input from user, we would want to save the data..and most commonn format to save data  is json format, which is can be used via json module.
+# the json module allows you to convert simple Python data structures into JSON-formatted strings.
+
+#The JSON ( JavaScript Object Notation) format was originally developed for JavaScript. However, it has since become a common format used by many languages, including Python.
+
+# Using json.dumps() and json.loads()
+"""
+from pathlib import Path
+import json
+numbers = [2, 3, 5, 7, 11, 13]
+path = Path('numbers.json')
+contents = json.dumps(numbers)
+path.write_text(contents)
+"""
+# see this simple code,the json.dumps() function takes one argument and returns a json formatted string, which we can write to data file, and further this code actually writes the data to disc at the path "numbers.json" this would be created in same directory as this programme would be running.
+"""
+from pathlib import Path
+import json
+path = Path('numbers.json')
+contents = path.read_text()
+numbers = json.loads(contents)
+print(numbers)
+"""
+# we are using json.loads to rebuilt the  list in ram after raeading the json formatted data in storage.
+
+# deep-dive.
+# since python lists are actually an array of pointers to all the data in ram. we need  to understand that storage drives doens't understadn peointers they just understand the data that's why use specific data storage procedure to store data in drive.
+#to save the data in storage driv.
+
+#json.dumps() (Dump String): This method takes complex ram structure, strips away all the Python-specific memory pointers, and flattens it into a raw, standardized string of text characters.
+
+#json.loads() (Load String): The exact reverse. It reads the raw text string from the hard drive, parses the brackets and commas, and physically re-allocates new C-memory structures in ram to rebuild the list.
+# there is something called race condition.
+# earlier we used to check that at a certain path does a file exists or not? via try except, later we used "path.exists()" to do the same but the issue in more production scale...what if in meantime this method returned true some other programme deleted that file? that causes the porgramme to crash.
+
+# thanks!
+#<----------------end of document---------->
