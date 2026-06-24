@@ -9,7 +9,7 @@ A `for` loop is generally used to loop through a sequence. The interpreter autom
 ```python
 magicians = ['alice', 'david', 'carolina']
 
-# The interpreter takes the first value in "magicians" and assigns it to "magician".
+# The interpreter takes the first value in "magicians" and assigns it to the  looping variable "magician".
 for magician in magicians: 
     print(magician)
 

@@ -16,7 +16,7 @@ print(x) # The print function prints values of variables too.
 
 ## 2. Strings
 
-Strings must be enclosed in quotes (both single `''` or double `""` quotes work). They function like an array, storing data as a sequence of characters.
+Strings must be enclosed in quotes (both single `''` or double `""` quotes work). They function like an array, storing data as a sequence of characters, python ignores string literals which aren't assigned to any values, we can use this fact to comment on code.
 
 ```python
 x = "hello the string must be encoded in quotes, both single or double quotes works"
@@ -26,7 +26,7 @@ print(x[0]) # Prints the first character of the string
 
 ### Looping Through Strings
 
-Looping variables must be integers or characters assigned by the loop. The keyword `in` literally assigns values of each character in the string to the looping variable.
+Looping variables can take any values as long as the looping data type is iterable. The keyword `in` literally assigns values of each character in the string to the looping variable as for loops uses iterator protocol.
 
 ```python
 # Iterating over the length of the string
@@ -35,15 +35,15 @@ for _ in range(len(x)):
 
 ```
 
-*(Note: While loops evaluate a condition each time and don't modify the looping variable automatically, whereas `for` loops do modify the variable by asking "what is the next value?")*
+*(Note: While loops evaluate a condition each time and don't modify the looping variable automatically, whereas `for` loops do modify the variable by asking "what is the next value?" and the last assignment to looping variable is saved in the memory during runtime of programme.)*
 
 ### The `range()` Function
 
-`range()` takes an integer input and returns all values lesser than itself (starting at 0). It formally takes input as `range(start, stop, step)` with a default start of 0 and step size of 1.
+It formally takes input as `range(start, stop, step)` with a default start of 0 and step size of 1, if the only input is an integer number. `range()` function works on lazy evaluation of the values saving memeory space.
 
 ```python
 z = range(7) # 7 is a prime no. fun fact :)
-print(z) # Prints "range(0,7)" because it generates numbers only when asked.
+print(z) # Prints "range(0,7)" because it generates numbers only when asked, i.e lazy evaluation.
 
 for _ in z:
     print(_) # "_" takes values in "z" starting at "0", "1", up to "n-1"
@@ -52,7 +52,7 @@ for _ in z:
 
 ## 3. String Methods
 
-Generally, methods on strings don't change the original string (since strings are **immutable**). They just give a new output. The syntax is `variable.method()`. Methods are actions that Python can perform on data objects in memory.
+Generally, methods on strings don't change the original string (since strings are **immutable**). They just give a new output. The syntax is `variable_name.method_name()`. Methods are actions that Python can perform on objects in memory using syntax `object_name.method_name()`.
 
 ```python
 yapping = "yadayada blabla"
@@ -72,7 +72,7 @@ Traditionally, concatenating strings with integers was messy and caused errors. 
 
 ```python
 stupid_string = "some placeholder string"
-stupid_numerical_value = 3 # 3 is a prime number f.f. :)
+stupid_numerical_value = 3 # 3 is a prime number fun fact :)
 
 print(f"hello this is a formatted string and here is your another string {stupid_string} and some stupid numerical value {stupid_numerical_value}")
 
@@ -88,7 +88,7 @@ print(x)
 
 ## 4. General Notes on Variables & Math
 
-* **Smart Variables:** You can assign mathematical operations (like `x = 3*2` or `3/2`). Python follows the order of operations (BODMAS).
+* **Smart Variables:** You can assign mathematical operations (like `x = 3*2` or `3/2`). Python follows the order of operations (BODMAS or PEMDAS).
 * **Large Numbers:** Underscores can be used to make large numbers readable without affecting compilation (e.g., `10_000_000_000`).
 * **Multiple Assignments:** * `x, y, z = 1, 2, 3`
 * `x = y = z = 1`
@@ -112,7 +112,7 @@ for _ in stupid_list:
 
 ### Indexing and Slicing
 
-You can chain string methods onto list elements if they are strings. You can also use negative indexing to access elements from the end of the list.
+You can chain string methods onto list elements if they are strings. You can also use negative indexing to access elements from the end of the list. Btw this operation is defined for both strings and lists.
 
 ```text
  +---+---+---+---+---+---+
@@ -120,7 +120,7 @@ You can chain string methods onto list elements if they are strings. You can als
  +---+---+---+---+---+---+
    0   1   2   3   4   5  
   -6  -5  -4  -3  -2  -1    
-
+# consider indexes as pointing between characters, the main reason for this is to ensure the fluidity of concept s[:i] + s[i:] is always equal to s, where 's' is some string.
 ```
 
 ```python
@@ -158,7 +158,7 @@ motorcycles = ['honda', 'yamaha', 'suzuki', 'ducati']
 del motorcycles[0]
 
 # 2. Using the 'pop()' method (removes and returns the element)
-# Assumes list is a stack. pop() removes the top (last) element by default.
+# Assumes list is a stack i.e. the last element is on the top of the stack. pop() removes the top (last element of list) element of stack by default.
 popped_motorcycle = motorcycles.pop() 
 first_owned = motorcycles.pop(0) # Pops specific index
 
@@ -216,3 +216,4 @@ cars = ['bmw', 'audi', 'toyota', 'subaru']
 print(len(cars)) # Output: 4
 
 ```
+**Thank you**
