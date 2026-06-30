@@ -1,10 +1,16 @@
-Variable names are case-sensitive.
+# basic overview of python.
+In this document we would be covering asic overview of python.
+
+## Variable names are case-sensitive.
 ```python
 a = 4
 A = "Sally"
 #A will not overwrite a
 ```
-Python has a set of keywords that are reserved words that cannot be used as variable names, function names, or any other identifiers:
+
+Python has a set of keywords that are reserved words that cannot be used as variable names, function names, or any 
+other identifiers:
+
 ```
 Keyword	    Description
 and	        A logical operator
@@ -46,7 +52,10 @@ with	    Used to simplify exception handling
 yield	    To return a list of values from a generator
 ```
 ## Unpack a Collection
-If you have a collection of values in a list, tuple etc. Python allows you to extract the values into variables. This is called unpacking.
+
+If you have a collection of values in a list, tuple etc. Python allows you to extract the values in collection object into variables. This is called unpacking.
+
+> Note- that this works only if both number of values in collection is same  as number of variables. but we can use asterisk operator to catch all left values into a seperate variables as a list.
 
 Example
 Unpack a list:
@@ -58,11 +67,13 @@ print(y)
 print(z)
 ```
 ## Global Variables
+
 Variables that are created outside of a function (as in all of the examples in the previous pages) are known as global variables.
 
 Global variables can be used by everyone, both inside of functions and outside.
 
-If we create a variable with the same name inside a function, this variable will be local, and can only be used inside the function. The global variable with the same name will remain as it was, global and with the original value, though now you will accces the variable in function would be local one defined innside that function.
+If we create a variable with the same name inside a function, this variable will be local, and can only be used inside the function. The global variable with the same name will remain as it was, global and with the original value, and that function or class would continue to use the variable in local scope w/o any knowledge of the variale defined in global scope with the same name.
+
 ```python
 x = "awesome"
 
@@ -75,9 +86,12 @@ myfunc()
 print("Python is " + x)
 
 ```
-# The global Keyword
+> note: The mere action of accessing a global variable in local scope doesn't need any special keywords, but if we surely need to use keyword's like "global" if we want to declare and initialize a variable into global scope from under a local scope & we need to follow the same procedure if we are just trying to overwrite a global variable froom under a local scope.
+
+## The global Keyword
+
 Normally, when you create a variable inside a function, that variable is local, and can only be used inside that function.
-To create a global variable inside a function, you can use the global keyword.
+To create a global variable inside a function, you can use the "global" keyword.
 
 ```python
 def myfunc():
@@ -94,6 +108,7 @@ Also, use the global keyword if you want to change a global variable inside a fu
 Example
 To change the value of a global variable inside a function, refer to the variable by using the global keyword:
 ```python
+# variable 'x' defined in global scope.
 x = "awesome"
 
 def myfunc():
@@ -118,7 +133,9 @@ Boolean Type:	bool
 Binary Types:	bytes, bytearray, memoryview
 None Type:	    NoneType
 ```
+
 ``Note=You can get the data type of any object by using the type() function``
+
 # Python Data Types:
 
 In Python, every value is an object, and every object has a specific data type. Because Python is dynamically typed, you don't need to explicitly declare a variable's type; the interpreter figures it out automatically when you assign a value.
