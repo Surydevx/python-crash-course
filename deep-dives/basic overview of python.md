@@ -479,3 +479,47 @@ print(bool([]))        # Output: False
 print(bool(None))      # Output: False
 
 ```
+# iterable objects.
+at it's core an iterable is any Python object capable of returning its members one at a time.
+
+## common iterable objects in python.
+
+Python has several built-in data types that fall into this category:
+
+Lists: [1, 2, 3]
+
+Strings: "Hello" (iterates character by character)
+
+Tuples: (10, 20, 30)
+
+Dictionaries: {"name": "Alice", "age": 30} (for loop iterates over the keys by default)
+
+Sets: {"apple", "banana"}
+
+# 
+
+When you write a for loop, Python secretly does two things behind the scenes:
+
+It calls the iter() function on your iterable object (e.g., your list). This creates an iterator.
+
+It repeatedly calls the next() function on that iterator to get the items one by one until it hits a StopIteration error, which tells the loop to finish.
+
+Here is what that looks like if you were to do it manually:
+
+```python
+my_string = "Hi"
+
+# 1. Create an iterator from the iterable
+my_iterator = iter(my_string)
+
+# 2. Get items one by one
+print(next(my_iterator)) # Output: 'H'
+print(next(my_iterator)) # Output: 'i'
+
+# If we called next() again here, Python would throw a StopIteration error!
+```
+## difference between iterator and iterable.
+
+In Python, the core difference is that an iterable is a data container that you can loop over, while an iterator is the stateful agent that actually fetches elements one by one from that iterable.
+
+Think of an iterable as a book (it holds the content) and an iterator as a bookmark (it tracks where you are and moves to the next page).

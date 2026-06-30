@@ -139,6 +139,32 @@ word = "Hello"
 if (n := len(word)) > 3:
     print(f"The word has {n} letters.")
 
+```
 > note - Summary of the rule
-Use = when you just need to store a value for later.
-Use := when you need to store a value and immediately feed that value into an if statement, while loop, or list comprehension on the exact same line.
+*    Use = when you just need to store a value for later.
+*    Use := when you need to store a value and immediately  feed that value into an if statement, while loop, or list comprehension on the exact same line.
+
+# Membership Operators
+Membership operators are used to test if a sequence is presented in an object:
+
+Operator - "in" , Returns True if a sequence with the specified value is present in the object.
+
+Operator - "not in"	Returns True if a sequence with the specified value is not present in the object.
+```python
+x = ["apple", "banana"]
+
+print("banana" in x)
+
+# returns True because a sequence with the value "banana" is in the list
+
+```
+and also see...
+
+```python
+x = ["apple", "banana"]
+
+print("pineapple" not in x)
+
+# returns True because a sequence with the value "pineapple" is not in the list
+
+```
