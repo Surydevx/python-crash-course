@@ -115,6 +115,7 @@ sys.ps2 = "bla bla"
 its just a default stribg we can chabge its name to maybe "surya the lord" or whatever we want.
 
 # encoding.
+
 By default, Python source files are treated as encoded in UTF-8. 
 `wtf is utf-8?`
 ```text
@@ -128,20 +129,27 @@ so it was kind of weird for the rest of the world..
 so we have utf-8 source encoding which supports almost every character in the world provided that your fonts are capable?
 yk some fonts just can"t represent some emojis, or maybe some japanese characters, chinese?
 ```
-In that encoding, characters of most languages in the world can be used simultaneously in string literals, identifiers and comments — although the standard library only uses ASCII characters for identifiers, a convention that any portable code should follow. To display all these characters properly, your editor must recognize that the file is UTF-8, and it must use a font that supports all the characters in the file.
-btw ascii takes 7 bits for each typ3 of character in source code. nothing m9re nothing l3ss.
+
+In utf-8 encoding, characters of most languages in the world can be used simultaneously in string literals, identifiers and comments — although the standard library only uses ASCII characters for identifiers, a convention that any portable code should follow. To display all these characters properly, your editor must recognize that the file is UTF-8, and it must use a font that supports all the characters in the file.
+
+btw ascii takes 7 bits for each type of character in source code. nothing more nothing less.
+
 but the genius if utf8 is if u aren't using some japanese/korean/mandarin(chinese) in ur code it would tge exact same space as if th3 source code was encoded in ascii.
+
 otherwise it can 5ake more space to repr3sent that character in memory.
 it can take 1 to 4 vytes (ascii takes 7 bits)
-==========================
-# the interactive mode
+
+## The Interactive Mode
+
 The REPL (Read-Eval-Print Loop) is: an interactive shell running in a TTY.
 And if we want we can change the default >>> and ... prompts. They are just variables stored in the sys module. If we want to we can change those variables, by typing this:
+
 ```python
 import sys
 sys.ps1 = "surya the lord> "
 sys.ps2 = "                ... "
 ```
+
 Now every time Python waits for my input, it will bow to surya the lord>.
 
  # Source Encoding & UTF-8
