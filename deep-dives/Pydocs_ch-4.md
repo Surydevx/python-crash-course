@@ -7,7 +7,12 @@ While standard `for` and `while` loops are straightforward, Python implements se
 **Basic Rules:**
 
 * A `for` statement loops through items of a sequence in the exact order they appear.
-* **Warning:** Modifying a sequence while looping over it creates various issues. For example, if you delete the second element in a list, all subsequent elements shift left, causing the loop to skip items and slowing down the operation.
+* **Warning:** Modifying a collection while looping over it creates dangerous issues. If you delete an element in a list mid-loop, subsequent elements shift left, causing the loop to skip items entirely.
+* **The Fix:** To manipulate a collection safely during iteration, use one of these two official strategies:
+1. **Loop over a copy:** `for user, status in users.copy().items():` (allows you to safely delete from the original `users` dict).
+2. **Create a new collection:** Build a brand-new, empty collection and append only the items you want to keep.
+
+
 
 ### 1.1 The `range()` Object and Iterables
 
@@ -61,6 +66,12 @@ for n in range(2, 10):
         print(f"{n} is a prime number")
 
 ```
+
+### 1.4 The `pass` Statement
+
+The `pass` statement does absolutely nothing. It is a null operation used when Python's syntax requires an indented block, but your program requires no action. You'll typically use this for minimal empty classes, infinite wait loops (`while True: pass`), or as a placeholder for a function you haven't written yet.
+
+> *Fun Fact:* Many Python developers conventionally use the Ellipsis literal `...` instead of `pass` as a placeholder body (e.g., `def my_unwritten_function(): ...`).
 
 ---
 
@@ -135,7 +146,7 @@ match some_data:
 
 ```
 
-Before this feature, you had to write multiple lines of messy code using `isinstance()` and manual attribute fetching (`a = some_data.x`).
+Before this feature, you had to write multiple lines of messy code using `isinstance()` and manual attribute fetching.
 
 ### 2.4 The `__match_args__` Special Attribute
 
@@ -162,25 +173,28 @@ Because `__match_args__ = ("x", "y")` locks in the order, the match engine inter
 
 **Built-in Automation:** If you use a `@dataclass`, Python automatically generates the `__match_args__` tuple for you based on the order you declare the fields.
 
-```python
-from dataclasses import dataclass
-
-@dataclass
-class Point:
-    x: int  # Automatically 1st in __match_args__
-    y: int  # Automatically 2nd in __match_args__
-
-```
-
 ---
 
 ## 3. Function Mechanics: Under the Hood
 
-When you pass data into a Python function, you are not passing a copy of the data; you are passing a direct link to the object in memory.
+In Python, "procedures" do not exist. Even if a function doesn't have a `return` statement—or if execution simply falls off the end of the block—it silently returns the built-in `None` object.
 
-### 3.1 The Mutable Default Trap
+When you pass data into a Python function, you are not passing a copy of the data. Arguments are passed by **Object Reference**—meaning you are passing a direct link to the object in memory.
 
-If you define a function with a default list (`def f(a, L=[]):`), Python reads the `def` line exactly once when the program starts. It creates that empty list in memory at that exact moment. Every subsequent time you call the function, it uses that **exact same list**.
+### 3.1 Symbol Tables & Scope (The LEGB Rule)
+
+When a function executes, it introduces a new "symbol table" (a hidden dictionary used strictly for local variables). When you reference a variable inside a function, Python searches for its value in a strict, unchangeable order known as the LEGB rule:
+
+1. **L**ocal symbol table (inside the current function).
+2. **E**nclosing functions' symbol tables (if it's a nested function).
+3. **G**lobal symbol table (the module-level variables).
+4. **B**uilt-in names (like `print` or `len`).
+
+Because of this order, you can easily *read* global variables inside a function, but you cannot directly *reassign* them unless you explicitly use the `global` statement. Otherwise, assigning a value simply creates a brand-new local variable that masks the global one.
+
+### 3.2 The Mutable Default Trap
+
+If you define a function with a default mutable object like a list (`def f(a, L=[]):`), Python evaluates that default value **exactly once** when the `def` line is first executed. It creates that empty list in memory at that exact moment. Every subsequent time you call the function, it uses that **exact same list**.
 
 ```python
 # THE TRAP (Dangerous!)
@@ -200,26 +214,28 @@ def add_item_good(item, box=None):
 
 ```
 
-### 3.2 Forcing How Arguments are Passed (`/` and `*`)
+### 3.3 Forcing How Arguments are Passed (`/` and `*`)
 
-You can place strict "barriers" in your argument list:
+Before using advanced controls, remember the absolute golden rule of Python functions: **Positional arguments must always precede keyword arguments in a function call.** (e.g., `f(10, x=5)` is valid, but `f(x=5, 10)` will trigger a syntax error).
 
-* **The Slash `/`:** Anything to the left is strictly positional. (e.g., `f(10)` is allowed, `f(x=10)` will crash).
-* **The Asterisk `*`:** Anything to the right is strictly keyword-only.
+To gain even stricter control over your APIs, you can place "barriers" in your argument list:
+
+* **The Slash `/`:** Anything to the left is *strictly positional*. The caller cannot use the parameter's name. (e.g., `f(10)` is allowed, `f(x=10)` will crash).
+* **The Asterisk `*`:** Anything to the right is *strictly keyword-only*. The caller must name the argument.
 
 ```python
 def setup_server(ip_address, /, port, *, secure):
     print(f"IP: {ip_address}, Port: {port}, Secure: {secure}")
 
-# VALID: IP is positional, port is either, secure is keyword
+# VALID: IP is positional, port is either, secure is keyword-only
 setup_server("192.168.1.1", 8080, secure=True)
 
 ```
 
-### 3.3 Catch-All Buckets (`*args` and `**kwargs`)
+### 3.4 Catch-All Buckets (`*args` and `**kwargs`)
 
 * `*args`: Catches any extra positional arguments and bundles them into a **Tuple**.
-* `**kwargs`: Catches any extra named arguments and bundles them into a **Dictionary**.
+* `**kwargs`: Catches any extra named keyword arguments and bundles them into a **Dictionary**.
 
 ```python
 def order_pizza(size, *toppings, **delivery_details):
@@ -230,9 +246,9 @@ order_pizza("Large", "Pepperoni", "Extra Cheese", tip=5, driver="Dave")
 
 ```
 
-### 3.4 Exploding Data into Functions (Unpacking)
+### 3.5 Exploding Data into Functions (Unpacking)
 
-If you have a list or dictionary, you can "explode" it directly into a function's arguments using `*` (for lists/tuples) and `**` (for dictionaries).
+If you have a list or dictionary, you can "explode" it directly into a function's arguments. This is the exact reverse of the buckets above. Use `*` to unpack lists/tuples and `**` to unpack dictionaries.
 
 ```python
 # Unpacking a List
@@ -252,7 +268,7 @@ print("Hello", "World", **settings)
 
 ### 4.1 Lambda Expressions
 
-A `lambda` is a "throwaway" function without a name, restricted to a single line of logic.
+A `lambda` is a small, anonymous "throwaway" function restricted to a single expression. They are syntactic sugar for a normal function definition.
 
 ```python
 # Real-world use case: Custom sorting
@@ -266,7 +282,7 @@ print(points) # Output: [(3, 2), (1, 5), (2, 8)]
 
 ### 4.2 Function Annotations
 
-You can attach expected types to your functions (e.g., `def f(name: str) -> str:`). Python’s engine **completely ignores these** when the code runs. They are essentially just sticky notes stored in a hidden dictionary (`__annotations__`) to help humans and code editors catch mistakes.
+You can attach expected types to your functions (e.g., `def f(name: str) -> str:`). Python’s engine **completely ignores these** when the code runs. They are essentially just metadata stored in a hidden dictionary (`__annotations__`) to help us and code editors (linters) catch mistakes.
 
 ```python
 def greet(name: str, age: int) -> str:
