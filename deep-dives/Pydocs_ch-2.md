@@ -1,187 +1,208 @@
-The python interpreter's binary is generally located at `/usr/local/bin/python3.14` in the file system.
-Other places  are also possible since it depends upon the installation path and so you could find the binary also at `/usr/local/python` 
+# Python Tutorial 2: Using the Python Interpreter
 
-> Note: Since i use ARCH BTW, i won't talk about MicroSLop, the main reason is i don't understand the windows filesystem and have no respect or interest to learn, this opinion is soulely mine and could be change depends on various conditions.
+## 1. Finding and Launching Python
 
-The primary python interpreter can be entered on the system via the command: 
+The Python interpreter's binary is generally located at `/usr/local/bin/python3.14` in the file system. Other places are also possible since it depends on the installation path. For example, on Arch Linux, system packages are typically installed directly to `/usr/bin/python` or `/usr/bin/python3.14`.
 
-```
+> **Note:** Since I use ARCH BTW, I won't talk about MicroSlop, the main reason is I don't understand the Windows filesystem and have no respect or interest to learn. This opinion is solely mine and could change depending on various conditions.
+
+The primary Python interpreter can be entered on the system via the command:
+
+```bash
 python
-```
- and the interpreter session can be exited via the End-Of -File character `Ctrl+D` or typing the command:
- 
- ```
- quit()
- ```
-
-The python interpreter works somewhat like the Unix shell ( Also can be understood as a terminal), that's when it's called with standard input connected to a tty device, it reads and executes commands interactively; when called with a file name argument or with a file as standard input, it reads and executes a _python script_ from that file.
-
-> Note: Let me explain what gibberish the upper paragraph is talking about, if you aren't a linux nerd...probability is that you aren't.
-> if you use windows you gotta have command prompt or powershell? yes, that's your terminal to be simple...though the originality of the above concept is concerned with the UNIX shell which is only present in UNIX based  operating systems like Berkeley Software Distribution (BSD's), MacOS which is kinda based on BSD's ( BSD license permits the use), and finally GNU/LINUX (Yes, i fear Meticulous perfectionists.)
-> 
-> In Linux Distributions (or simply Distro) you can install various terminals Like Ghostty, Kitty and Alacritty there's a whole circus out there. what these terminal does is rendering graphs, and handling font managements and user input and they pass these commands to a pseudo terminal called pty (it is what it is man...) which acts as an emulation layer over traditional physical hardware TTY devices.
-> 
->  I don't know about MacOS, though they have a terminal named `Terminal`  and  i am assuming this would work similar but good luck installling other terminals (Maybe you could get homebrew and try out different terminals)
->  
-> The main deal is Shell, you have kind of a lot of options for shell Bash(default for many linux distro's), Zsh(feature rich and loved by many llinux nerd's also Tim cook yess, i am not joking, MacOS Defaults to Zsh in it's terminal emulator named `Terminal` ), fish, powershell (I wanted to ignore this MIcroslop badly but, it is what it is. ) and other less popular options are there like Korn Shell, csh, tcsh ad whole list of world war 2 relics, you can totally avoid them.
-> The shells here what processes your input and convey your input to kernel and does all types of gymnastics.
-
-Tired? jal lijiye !
-
-Let's Talk not so routine things...
-You run a python progamme by either writing it in a text editor like Vscode, vim or NVim , Emacs, sublime  Text, Intellij idea or anything you want to do and then typing command :
 
 ```
-python script.py # note that the name could be python3.14 too depending on the name with which the prorgamme was installed in your computer.
-```
 
-or you can just enter the python interpreter also called REPL(Read-Evaluate-Print-Loop) which basically means a simple computer prorgammme which is interactive, i.e.  takes a single input and spits the output after processing.
+The interpreter session can be exited via the End-Of-File character (`Ctrl+D` on Unix) or by typing the command:
 
-The third option is running python code like a command, processes the command and input and returns the results and exits the programme.
-
-```
-python -c "Your python code goes here" [arg] ... # the ellipsis means more flags can be used.
-```
-
-Understand that the command should be inside quotes as your code could contain characters which are meaningful to the shell and thus shell can hijack your programme to interpret their own meaning.
+```python
+quit()
 
 ```
-python -c "import sys; print(f'Hello, {sys.argv[1]}!')" surya # surya is the argument stored in sys.argv variable (which is a list)
+
+The Python interpreter works somewhat like the Unix shell. When it's called with standard input connected to a tty device, it reads and executes commands interactively. When called with a file name argument or with a file as standard input, it reads and executes a *Python script* from that file.
+
+---
+
+## 2. Terminals, Shells, and TTYs (A Nerd's Note)
+
+> **Note:** Let me explain what gibberish the upper paragraph is talking about, if you aren't a Linux nerd... probability is that you aren't.
+> If you use Windows you gotta have Command Prompt or PowerShell? Yes, that's your terminal to be simple... though the originality of the above concept is concerned with the UNIX shell which is only present in UNIX-based operating systems like Berkeley Software Distribution (BSDs), MacOS which is kinda based on BSDs (BSD license permits the use), and finally GNU/LINUX (Yes, I fear meticulous perfectionists).
+> In Linux Distributions (or simply Distro) you can install various terminals like Ghostty, Kitty, and Alacritty—there's a whole circus out there. What these terminals do is render graphs, handle font management, and take user input. They pass these commands to a pseudo-terminal called a `pty` (it is what it is man...) which acts as an emulation layer over traditional physical hardware TTY devices.
+> I don't know about MacOS, though they have a terminal named `Terminal` and I am assuming this would work similarly, but good luck installing other terminals (Maybe you could get homebrew and try out different terminals).
+> The main deal is the Shell. You have a lot of options for shells: Bash (default for many Linux distros), Zsh (feature-rich and loved by many Linux nerds—also Tim Cook, yes, I am not joking, MacOS defaults to Zsh in its terminal emulator named `Terminal`), fish, PowerShell (I wanted to ignore this MicroSlop badly but, it is what it is) and other less popular options are there like Korn Shell, csh, tcsh, and a whole list of World War 2 relics you can totally avoid.
+> The shell here is what processes your input, conveys your input to the kernel, and does all types of gymnastics.
+
+*Tired? Jal lijiye!* 🥛
+
+---
+
+## 3. Running Python Code
+
+Let's talk not-so-routine things. You run a Python program by writing it in a text editor like VSCode, Vim, NVim, Emacs, Sublime Text, IntelliJ IDEA, or whatever you want, and then typing the command:
+
+```bash
+python script.py # Note that the name could be python3.14 depending on how it was installed.
+
 ```
 
-## Modules used  as commands.
-To use modules from terminal rather than importing them into a file, we can use the following command: 
+Alternatively, you can just enter the Python interpreter, also called the **REPL** (Read-Evaluate-Print-Loop), which basically means a simple computer program that is interactive (takes a single input and spits the output after processing).
+
+The third option is running Python code directly from the command line as a string:
+
+```bash
+python -c "Your python code goes here" [arg] ... # The ellipsis means more flags can be used.
+
 ```
+
+Understand that the command should be inside quotes because your code could contain characters which are meaningful to the shell, and thus the shell could hijack your program to interpret its own meaning.
+
+```bash
+python -c "import sys; print(f'Hello, {sys.argv[1]}!')" surya 
+# 'surya' is the argument stored in the sys.argv variable (which is a list)
+
+```
+
+---
+
+## 4. Modules Used as Commands (`-m`)
+
+To use modules from the terminal rather than importing them into a file, we can use the following command:
+
+```bash
 python -m <module_name> [arg]
+
 ```
-where `-m` flag represent module name.
-what the above command does is find the module path under the directories listed in variable `sys.path` and then executes the executable of module, as several python package manager install the executable of the package, though using it through the`-m` flag is safer.
-see...
-- **If `module_name.py` is a single file:** Python executes `module_name.py` directly.
-- **If `module_name.py` is a directory/folder:** Python executes a file named `module_name/__main__.py` inside that directory and executes it.
-btw, wanna see how `sys.path` looks like ? 
-```
+
+Where the `-m` flag represents the module name. What this command does is find the module path under the directories listed in the variable `sys.path`, and then executes the module. Several Python package managers install the executable of the package, though using it through the `-m` flag is safer.
+
+Here is how it resolves:
+
+* **If `module_name.py` is a single file:** Python executes `module_name.py` directly.
+* **If `module_name.py` is a directory/folder:** Python looks for a file named `__main__.py` inside that directory and executes it.
+
+By the way, wanna see what `sys.path` looks like? Have it your way... it's just a list as you can see:
+
+```python
 >>> import sys
 >>> sys.path
 ['', '/usr/lib/python314.zip', '/usr/lib/python3.14', '/usr/lib/python3.14/lib-dynload', '/usr/lib/python3.14/site-packages']
 >>>
-```
-have your way...it's just a list as you can see.
-explanation to why using `-m` flag is safer, 
-The reason is `Exact Environment Targeting` :
-If we have multiple Python versions installed (e.g., Python 3.10 and 3.12, or a virtual environment), running `pip install` might use the wrong Python version. Running **`python3.12 -m pip install`** guarantees that `pip` installs the package specifically into **Python 3.12**.
 
-wanna see Magic?
 ```
-# we can Start a local HTTP web server serving in current directory.
+
+**Why using the `-m` flag is safer:**
+The reason is **Exact Environment Targeting**. If we have multiple Python versions installed (e.g., Python 3.10 and 3.12, or a virtual environment), running `pip install` might use the wrong Python version. Running `python3.12 -m pip install` guarantees that `pip` installs the package specifically into Python 3.12.
+
+**Wanna see magic?**
+
+```bash
+# Start a local HTTP web server serving in the current directory
 python -m http.server 8000
 
-# we can Format a JSON file/string.
+# Format a JSON file/string
 python -m json.tool data.json
 
-# we can create a brand new virtual environment.
+# Create a brand new virtual environment
 python -m venv myenv
 
-# we can inspect performance/benchmarks of a statement.
+# Inspect performance/benchmarks of a statement
 python -m timeit "'-'.join(str(n) for n in range(100))"
-```
-ohkay, it ain't magic. don't blame my little soul for over exciting.
 
->Note: For most Python tools, `/usr/local/bin/yada-yada` is **not** the actual core binary of `yada-yada`—it is just a tiny generated wrapper script. yk now...this cursed knowledge will live on with you.
-
-## Argument passing.
-Whatever the argument is passed to the script get's converted to a list and assigned to a  variable called `sys.argv` .
-
-IF there are no arguments given the length of the string is 1, a nd `sys.argv[0] = ''` that's an empty string
-
-| How You Launch Python | Command Example | Value of sys.argv[0] | Explanation |
-|---|---|---|---|
-| Interactive (REPL) | python | '' (empty string) | Launched with no arguments; opens the interactive shell. |
-| Standard Script | python app.py | 'app.py' | The path/filename of the script. |
-| Standard Input (-) | <code>cat script.py | python -</code> | '-' | Directs Python to read code from standard input (stdin). |
-| Command String (-c) | python -c "import sys; print(sys.argv[0])" | '-c' | Tells you the code was executed directly from an inline string command. |
-| Module Execution (-m) | python -m http.server | '/usr/lib/python3.14/http/server.py' | The resolved absolute file path of the located module on your system. |
-
-# the REPL.
-this is also called interactive Read Eval Print Loop.
-that's it's an interactive python ibterpreter.
-it k8nd if behaced likes an terminal/shell in it's own.
-in interact8ve mode the commands are read from a tty shell.
-btw we can even change the default ">>>" and "..." to our likes.
-```Pytyon
-sys.ps1 = "yada yada"
-sys.ps2 = "bla bla"
-```
-its just a default stribg we can chabge its name to maybe "surya the lord" or whatever we want.
-
-# encoding.
-
-By default, Python source files are treated as encoded in UTF-8. 
-`wtf is utf-8?`
-```text
-To ubderstand what is utf-8 we need to understand what is source encoding is?
-
-Source encoding is the process of translating human-readable characters into digital binary code (1s and 0s) so a computer can store, process, and display the text correctly
-so to do this process we have ASCII and what dies ASCII does is that you can assume its a kind of dictionary (not python rictionary but actyal labguafe dictionary) which h9lds the cgaracter name and corrrespind8ng numver of it.
-and this number gets converted to binary sequ3nces 8n computers.
-the limitation 2as that ascii only had 128 charact3rs that too onky supported 3ngl8sh...
-so it was kind of weird for the rest of the world.. 
-so we have utf-8 source encoding which supports almost every character in the world provided that your fonts are capable?
-yk some fonts just can"t represent some emojis, or maybe some japanese characters, chinese?
 ```
 
-In utf-8 encoding, characters of most languages in the world can be used simultaneously in string literals, identifiers and comments — although the standard library only uses ASCII characters for identifiers, a convention that any portable code should follow. To display all these characters properly, your editor must recognize that the file is UTF-8, and it must use a font that supports all the characters in the file.
+Okay, it ain't magic. Don't blame my little soul for over-exciting.
 
-btw ascii takes 7 bits for each type of character in source code. nothing more nothing less.
+> **Note:** For most Python tools, `/usr/local/bin/yada-yada` is **not** the actual core binary of `yada-yada`—it is just a tiny generated wrapper script. Yk now... this cursed knowledge will live on with you.
 
-but the genius if utf8 is if u aren't using some japanese/korean/mandarin(chinese) in ur code it would tge exact same space as if th3 source code was encoded in ascii.
+---
 
-otherwise it can 5ake more space to repr3sent that character in memory.
-it can take 1 to 4 vytes (ascii takes 7 bits)
+## 5. Argument Passing (`sys.argv`)
 
-## The Interactive Mode
+Whatever argument is passed to the script gets converted to a list and assigned to a variable called `sys.argv`. If there are no arguments given, the length of the list is 1, and `sys.argv[0] = ''` (an empty string).
 
-The REPL (Read-Eval-Print Loop) is: an interactive shell running in a TTY.
-And if we want we can change the default >>> and ... prompts. They are just variables stored in the sys module. If we want to we can change those variables, by typing this:
+| How You Launch Python | Command Example | Value of `sys.argv[0]` | Explanation |
+| --- | --- | --- | --- |
+| **Interactive (REPL)** | `python` | `''` (empty string) | Launched with no arguments; opens the interactive shell. |
+| **Standard Script** | `python app.py` | `'app.py'` | The path/filename of the script. |
+| **Standard Input (`-`)** | cat script.py | python - | `'-'` | Directs Python to read code from standard input (stdin). |
+| **Command String (`-c`)** | `python -c "import sys; print(sys.argv[0])"` | `'-c'` | Tells you the code was executed directly from an inline string command. |
+| **Module Execution (`-m`)** | `python -m http.server` | *Full absolute path* | The resolved absolute file path of the located module's `__main__.py` on your system. |
+
+---
+
+## 6. The REPL (Interactive Mode)
+
+This is also called the interactive Read Eval Print Loop. That is, it's an interactive Python interpreter. It kind of behaves like a terminal/shell on its own. In interactive mode, the commands are read from a TTY shell.
+
+By the way, we can even change the default `>>>` and `...` prompts to our liking. They are just variables stored in the `sys` module.
 
 ```python
 import sys
 sys.ps1 = "surya the lord> "
 sys.ps2 = "                ... "
+
 ```
 
-Now every time Python waits for my input, it will bow to surya the lord>.
+Now every time Python waits for my input, it will bow to `surya the lord>`.
 
- # Source Encoding & UTF-8
+> **Technical Note:** `sys.ps1` and `sys.ps2` are only defined if the interpreter is in interactive mode. If you try to print them from inside a script file, Python will throw an error!
 
- * Python 3 Default: Yes, since Python 3.0, all source code is assumed to be UTF-8 by default.
- * Font vs. Encoding: its a crucial distinction here that many beginners miss. The encoding tells the computer what character it is (the bytes); the font tells the screen how to draw it (the glyph). If the font lacks the glyph, you get the dreaded "tofu" (those empty little rectangles ▯).
- 
- * Portable Code (PEP 8): Even though Python allows you to name a variable उम्र = 25 or résumé = True, the official style guide (PEP 8) strongly dictates using only standard ASCII for variables, functions, and classes so anyone anywhere can read and type your code.
- 
-Technical clarification on ASCII vs Bytes:
+---
 
-You correctly noted that ASCII takes exactly 7 bits. However, computers don't store memory in 7-bit chunks; they store memory in 8-bit bytes.
+## 7. Source Encoding & UTF-8
 
-So, an ASCII character still takes up 1 full byte (8 bits) of disk space. It just leaves the very first bit empty (it's always a 0).
-This is exactly where the "genius of UTF-8" that you mentioned comes into play:
- * UTF-8 looks at that first bit. If it's a 0, UTF-8 says: "Ah, this is just plain old ASCII. I'll only read this 1 byte."
- * If you use a Japanese Kanji or an emoji, UTF-8 flips that first bit to a 1, which tells the computer: "Hey! Stop! This is a big character, you need to read the next 2, 3, or 4 bytes to figure out what it is!"
-Because of this, an English Python script encoded in UTF-8 is byte-for-byte identical to the exact same script encoded in ASCII. No extra memory is wasted.
-To declare an encoding other than the default one, a special comment line should be added as the first line of the file. The syntax is as follows:
+By default, Python source files are treated as encoded in UTF-8.
 
+**WTF is UTF-8?**
+
+> To understand what UTF-8 is, we need to understand what source encoding is.
+> Source encoding is the process of translating human-readable characters into digital binary code (1s and 0s) so a computer can store, process, and display the text correctly. To do this process, we initially had ASCII. You can assume ASCII is a kind of dictionary (not a Python dictionary, but an actual language dictionary) which holds the character name and the corresponding number for it. This number gets converted to binary sequences in computers.
+> The limitation was that ASCII only had 128 characters, and that only supported English. So it was kind of weird for the rest of the world. Now, we have UTF-8 source encoding, which supports almost every character in the world (provided that your fonts are capable; yk some fonts just can't represent some emojis, or Japanese/Chinese characters).
+
+In UTF-8 encoding, characters of most languages in the world can be used simultaneously in string literals, identifiers, and comments—although the standard library only uses ASCII characters for identifiers, a convention that any portable code should follow. To display all these characters properly, your editor must recognize that the file is UTF-8, and it must use a font that supports all the characters in the file.
+
+### ASCII vs Bytes (The Genius of UTF-8)
+
+ASCII takes exactly 7 bits for each type of character in source code. However, computers don't store memory in 7-bit chunks; they store memory in 8-bit bytes. So, an ASCII character still takes up 1 full byte (8 bits) of disk space. It just leaves the very first bit empty (it's always a `0`).
+
+This is exactly where the genius of UTF-8 comes into play:
+
+* UTF-8 looks at that first bit. If it's a `0`, UTF-8 says: *"Ah, this is just plain old ASCII. I'll only read this 1 byte."*
+* If you use a Japanese Kanji or an emoji, UTF-8 flips that first bit to a `1`, which tells the computer: *"Hey! Stop! This is a big character, you need to read the next 2, 3, or 4 bytes to figure out what it is!"*
+
+Because of this, if you aren't using Japanese/Korean/Mandarin in your code, an English Python script encoded in UTF-8 is byte-for-byte identical to the exact same script encoded in ASCII. No extra memory is wasted. Otherwise, it can take 1 to 4 bytes to represent a heavier character in memory.
+
+### Summary of Encoding Rules:
+
+* **Python 3 Default:** Yes, since Python 3.0, all source code is assumed to be UTF-8 by default.
+* **Font vs. Encoding:** This is a crucial distinction that many beginners miss. The *encoding* tells the computer what character it is (the bytes); the *font* tells the screen how to draw it (the glyph). If the font lacks the glyph, you get the dreaded "tofu" (those empty little rectangles ▯).
+* **Portable Code (PEP 8):** Even though Python allows you to name a variable `उम्र = 25` or `résumé = True`, the official style guide (PEP 8) strongly dictates using only standard ASCII for variables, functions, and classes so anyone anywhere can read and type your code.
+
+### Declaring a Custom Encoding
+
+To declare an encoding other than the default one, a special comment line should be added as the **first line** of the file. The syntax is as follows:
+
+```python
 # -*- coding: encoding -*-
-where encoding is one of the valid codecs supported by Python.
+
+```
+
+where `encoding` is one of the valid codecs supported by Python.
 
 For example, to declare that Windows-1252 encoding is to be used, the first line of your source code file should be:
+
 ```python
 # -*- coding: cp1252 -*-
+
 ```
-One exception to the first line rule is when the source code starts with a UNIX “shebang” line. 
-In this case, the encoding declaration should be added as the second line of the file. For example:
+
+One exception to the first-line rule is when the source code starts with a UNIX "shebang" line. In this case, the encoding declaration should be added as the **second line** of the file. For example:
+
 ```python
 #!/usr/bin/env python3
 # -*- coding: cp1252 -*-
-```
-;) done.
 
+```
+
+;) done.
