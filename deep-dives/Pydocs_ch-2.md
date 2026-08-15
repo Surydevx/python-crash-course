@@ -28,7 +28,7 @@ The python interpreter works somewhat like the Unix shell ( Also can be understo
 
 Tired? jal lijiye !
 
-Let's Talk not so routine tthings...
+Let's Talk not so routine things...
 You run a python progamme by either writing it in a text editor like Vscode, vim or NVim , Emacs, sublime  Text, Intellij idea or anything you want to do and then typing command :
 
 ```
