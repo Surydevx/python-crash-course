@@ -25,90 +25,51 @@ Lists are ordered collections of items that you can change (mutable).
 fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
 print(fruits.count('apple'))
 # 2
-print(fruits.count('tangerine'))
-# 0
-print(fruits.index('banana'))
-# 3
-print(fruits.index('banana', 4))  # Find next banana starting at position 4
-# 6
-fruits.reverse()
-print(fruits)
-# ['banana', 'apple', 'kiwi', 'banana', 'pear', 'apple', 'orange']
-fruits.append('grape')
-print(fruits)
-# ['banana', 'apple', 'kiwi', 'banana', 'pear', 'apple', 'orange', 'grape']
 fruits.sort()
 print(fruits)
-# ['apple', 'apple', 'banana', 'banana', 'grape', 'kiwi', 'orange', 'pear']
-fruits.pop()
-# 'pear'
+# ['apple', 'apple', 'banana', 'banana', 'kiwi', 'orange', 'pear']
+
 ```
 
-*Note: Methods that modify the list (like `sort` or `append`) return `None`, not the list itself.*
+> *Note: Methods that only modify the list (like `sort`, `append`, `reverse`) return `None`, not the list itself. This is a strict design principle across all mutable data structures in Python.*
 
 ### Lists as Stacks and Queues
 
 * **Stack (Last-In, First-Out):** Lists work great as stacks. Use `append()` to push and `pop()` to pull the top item.
-
-```python
-stack = [3, 4, 5]
-stack.append(6)
-stack.append(7)
-stack
-# [3, 4, 5, 6, 7]
-stack.pop()
-# 7
-stack
-# [3, 4, 5, 6]
-stack.pop()
-# 6
-stack.pop()
-# 5
-stack
-# [3, 4]
-
-```
-* **Queue (First-In, First-Out):** Lists are *terrible* for queues because inserting at the beginning is slow. Instead, import and use `collections.deque` for fast appends and pops from both ends.
+* **Queue (First-In, First-Out):** Lists are *terrible* for queues because inserting at the beginning is slow (all other elements must shift by one in memory). Instead, import and use `collections.deque` for fast appends and pops from both ends.
 
 ```python
 from collections import deque
 queue = deque(["Eric", "John", "Michael"])
-queue.append("Terry")           # Terry arrives
-queue.append("Graham")          # Graham arrives
-queue.popleft()                 # The first to arrive now leaves
-'Eric'
-queue.popleft()                 # The second to arrive now leaves
-'John'
-queue                           # Remaining queue in order of arrival
-deque(['Michael', 'Terry', 'Graham'])
+queue.append("Terry")           
+queue.popleft() # Instantly removes and returns 'Eric'                
+
 ```
 
-### List Comprehensions
+### List Comprehensions (and Nesting)
 
 A concise way to create lists without writing bulky `for` loops.
 
 ```python
-# The old way:
-squares = []
-for x in range(10):
-    squares.append(x**2)
-
-# The list comprehension way:
-squares = [x**2 for x in range(10)]
-
-# With a condition (filter):
+# Standard comprehension with a filter condition:
 evens = [x for x in range(10) if x % 2 == 0]
+
+# Nested comprehension (e.g., flattening a 2D list):
+vec = [[1,2,3], [4,5,6], [7,8,9]]
+flat = [num for elem in vec for num in elem]
+# [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 ```
 
 ### The `del` Statement
 
-Unlike `remove()` which deletes by *value*, `del` deletes an item by its *index* or slice.
+Unlike `remove()` which deletes by *value*, `del` deletes an item by its *index* or slice without returning it.
 
 ```python
 a = [10, 20, 30, 40]
 del a[0]    # Removes 10
 del a[1:3]  # Removes a slice
+del a[:]    # Clears the entire list
 
 ```
 
@@ -118,8 +79,12 @@ del a[1:3]  # Removes a slice
 
 Tuples are like lists, but they **cannot be changed** after creation. They are written with parentheses `()`.
 
-* **Immutability:** You cannot assign a new value to a tuple index (e.g., `t[0] = 5` causes an error).
-* **Ordered:** you can access the elements  using index, supports 0 based indexing.
+* **Immutability:** You cannot assign a new value to a tuple index (e.g., `t[0] = 5` causes a `TypeError`). However, if a tuple contains a mutable object (like a list), you *can* change the contents of that list.
+* **The Philosophy (Tuples vs. Lists):**
+* **Lists** are usually homogeneous (store multiple items of the *same* type) and are accessed by looping.
+* **Tuples** are usually heterogeneous (store *different* types of data, like a single database record: `("Alice", 25, "Engineer")`) and are accessed by unpacking.
+
+
 * **Packing and Unpacking:** You can pack multiple values into a tuple and unpack them into variables.
 
 ```python
@@ -131,15 +96,17 @@ x, y, z = my_tuple
 
 ```
 
-* **Single-item tuples:** To make a tuple with one item, you *must* include a comma: `singleton = ("hello",)`
+> *Quirk: To make a tuple with one item, you must include a trailing comma: `singleton = ("hello",)*`
 
 ---
 
 ## 3. Sets (Unordered & Unique)
 
-A set is an unordered collection where **duplicates are automatically removed**. They are created using curly braces `{}` or the `set()` function. *(Note: `{}` creates an empty dictionary, so use `set()` for an empty set).*
+A set is an unordered collection where **duplicates are automatically removed**. They are incredibly fast for "membership testing" (`in` / `not in`).
 
-Sets are incredibly fast for checking if an item exists ("membership testing") and support math operations:
+* **Creation:** Created using curly braces `{}` or the `set()` function. *(Note: `{}` creates an empty dictionary, so use `set()` for an empty set).*
+* **Math Operations:** Sets support union, intersection, and differences.
+* **Set Comprehensions:** Just like lists, you can generate sets on the fly.
 
 ```python
 a = set('abracadabra')
@@ -150,22 +117,34 @@ a | b  # Union: letters in either 'a' or 'b'
 a & b  # Intersection: letters in BOTH
 a ^ b  # Symmetric Difference: letters in 'a' or 'b' but NOT both
 
+# Set Comprehension:
+unique_consonants = {x for x in 'abracadabra' if x not in 'abc'}
+
 ```
 
 ---
 
 ## 4. Dictionaries (Key-Value Pairs)
 
-Dictionaries store data in `key: value` pairs. They are written with curly braces `{}`.
+Dictionaries store data in `key: value` pairs.
 
 * **Keys:** Must be unique and **immutable** (strings, numbers, or tuples). You cannot use a list as a key.
-* **Values:** Can be anything.
-* **Accessing data:** `my_dict['key']` gets the value. If the key doesn't exist, it crashes.
+* **Accessing data:** `my_dict['key']` gets the value. If the key doesn't exist, it raises a `KeyError`.
 * **Safe access:** Use `my_dict.get('key')` instead. It returns `None` (or a default value you choose) instead of crashing if the key is missing.
 
+### Dictionary Comprehensions and Merging
+
 ```python
-user = {"name": "Jack", "age": 25}
-user["job"] = "Developer" # Adds a new key-value pair
+# Dict Comprehension:
+squares_dict = {x: x**2 for x in (2, 4, 6)}
+# {2: 4, 4: 16, 6: 36}
+
+# Merging (Python 3.9+):
+user = {"name": "Jack"}
+job_info = {"job": "Dev", "age": 25}
+
+combined = user | job_info 
+# {"name": "Jack", "job": "Dev", "age": 25}
 
 ```
 
@@ -210,6 +189,13 @@ for item in sorted(my_list):
 ```
 
 
+* **Looping Unique Items in Order:** Combine `sorted()` and `set()`.
+```python
+for item in sorted(set(my_list)):
+
+```
+
+
 
 ---
 
@@ -219,3 +205,4 @@ for item in sorted(my_list):
 * **Membership & Identity:** Use `in` / `not in` to check if an item is inside a collection. Use `is` / `is not` to check if two variables point to the exact same object in memory.
 * **Short-Circuiting:** The `and` and `or` operators stop evaluating as soon as they know the answer. In `A and B`, if `A` is False, Python doesn't even look at `B`.
 * **Sequence Comparisons:** Lists and strings are compared lexicographically (dictionary order). It checks the first items, then the second items, etc. `[1, 2, 3] < [1, 2, 4]` is True because 3 is less than 4.
+* **The Walrus Operator (`:=`):** In Python, unlike C, you cannot accidentally type `=` when you meant `==` inside an `if` statement because assignment inside an expression is explicitly banned. If you *want* to assign a variable inside an expression, you must explicitly use the walrus operator `:=`.
