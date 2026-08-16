@@ -1,4 +1,4 @@
-# Tutorial 7 (Object-Oriented Programming)
+# Tutorial 7
 
 Welcome to the deep trenches! We are moving towards the end of syntax learning and covering Object-Oriented Programming (OOP).
 

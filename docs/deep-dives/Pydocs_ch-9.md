@@ -1,4 +1,4 @@
-# Python Tutorial 2: Classes & OOP
+# Python Tutorial 9: Classes & OOP
 
 Unlike languages like C++ or Java that force you into massive boilerplate to do Object-Oriented Programming, Python’s class mechanism adds a minimum of new syntax. Classes in Python are extremely dynamic—they are created at runtime, and you can modify them on the fly.
 

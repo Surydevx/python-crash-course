@@ -1,4 +1,4 @@
-# Type Hinting (nums: list[int]) and (-> int)
+# Type Hinting
 
 
 It’s called Type Hinting, and it was added to Python to make code easier to read and debug. It does not actually change how the code runs. It's just a label telling you what data types to expect.

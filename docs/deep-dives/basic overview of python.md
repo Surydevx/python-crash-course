@@ -1,7 +1,9 @@
-# Basic overview of python.
+# Basic Overview Of Python.
+
 In this document we would be covering asic overview of python.
 
 ## Variable names are case-sensitive.
+
 ```python
 a = 4
 A = "Sally"
