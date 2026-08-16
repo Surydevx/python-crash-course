@@ -40,6 +40,7 @@ surya: print(f'Debugging {bugs=} {count=}')
 Debugging bugs='roaches' count=13
 
 ```
+
 *(i changed the prompt of python interpreter, cool isn't it?)*
 
 ### 1.3 The Older Ways: `.format()` and `%`
