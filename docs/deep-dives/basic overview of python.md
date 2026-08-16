@@ -1,4 +1,4 @@
-# basic overview of python.
+# Basic overview of python.
 In this document we would be covering asic overview of python.
 
 ## Variable names are case-sensitive.

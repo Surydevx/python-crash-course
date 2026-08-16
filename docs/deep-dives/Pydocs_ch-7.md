@@ -1,4 +1,4 @@
-# Python I/O: Formatting, Files, and Not Corrupting Your Data
+# Python Tutorial 7: I/O formatting and Files
 
 If your program can't talk to the outside world, it's basically just heating up your CPU for no reason. This chapter covers how to format text, how to read/write files, and how to save complex data structures.
 

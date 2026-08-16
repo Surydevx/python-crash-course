@@ -1,4 +1,6 @@
 # Type Hinting (nums: list[int]) and (-> int)
+
+
 It’s called Type Hinting, and it was added to Python to make code easier to read and debug. It does not actually change how the code runs. It's just a label telling you what data types to expect.
 
 nums: list[int]: This tells you that the input variable nums is expected to be a list filled with integers (int). If you passed a list of strings, Python wouldn't crash immediately, but your code editor might give you a warning.

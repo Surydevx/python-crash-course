@@ -1,3 +1,4 @@
+# Literal String Concatanation
 The core concept you are looking at here is a special feature in Python called **Implicit String Literal Concatenation**.
 
 Let's break down exactly what is happening, why it throws errors in certain cases, and how this behaves differently in a `.py` file compared to the REPL (the interactive terminal).

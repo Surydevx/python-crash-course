@@ -1,5 +1,6 @@
-# lists
+# Lists
 while we are familliar with normal stuff let's work deep into trenches.
+
 ## Python Lists: Using the `list()` Constructor
 
 While you might already be familiar with the standard way of making a list, Python offers a built-in function called the `list()` constructor that provides another powerful way to generate lists.

@@ -1,4 +1,4 @@
-# Python Modules & Packages
+# Python Tutorial 6: Modules & Packages
 
 If you quit the Python REPL, all your hard work, functions, and variables vanish into the digital void. To build actual software, you need to save your code in files.
 

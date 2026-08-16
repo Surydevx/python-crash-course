@@ -1,6 +1,7 @@
-# Python Crash Course: Chapters 1, 2 & 3
 
-These notes cover the fundamentals of Python, including variables, data types, loops, and lists.
+# Tutorial -1
+
+These notes cover the fundamentals of Python, including variables, data types, loops, and lists from Python Crash Course: Chapters 1, 2 & 3
 
 ## 1. Variables and Print Function
 

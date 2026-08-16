@@ -1,0 +1,21 @@
+# Generated documentation site
+site/
+
+# Python Virtual Environments
+.venv/
+venv/
+env/
+
+# Python cache & build files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.mypy_cache/
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+*.swp

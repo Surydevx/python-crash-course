@@ -1,4 +1,4 @@
-# Python Control Flow & Function Mechanics: Advanced Study Guide
+# Python Tutorial 4: Control Flow & Function Mechanics
 
 ## 1. Advanced Loop Mechanics
 

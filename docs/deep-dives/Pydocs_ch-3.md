@@ -1,4 +1,4 @@
-# Python Fundamentals: Evaluation, Strings, and Memory Management
+# Python Tutorial 3 : Evaluation, Strings, and Memory Management
 
 ## 1. Using Python as a Calculator and Variable Assignment
 

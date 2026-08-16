@@ -1,4 +1,4 @@
-# Python Exceptions: How to Fail Gracefully
+# Python Tutorial 8: Exceptions
 
 Even if your code is syntactically perfect, it will eventually break. A file might be missing, a user might type a word instead of a number, or the internet might drop. This chapter is about how to handle those crashes without your entire program crashing.
 

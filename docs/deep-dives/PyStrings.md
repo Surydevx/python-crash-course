@@ -1,4 +1,4 @@
-# Python Strings
+# Strings
 
 In Python, a **string** (`str`) is a fundamental data type used to represent text. Under the hood, a string is a sequence of Unicode characters.
 

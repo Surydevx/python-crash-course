@@ -1,4 +1,4 @@
-# Python Data Structures: A Simplified Guide
+# Python Tutorial 5: Data Structures
 
 This guide breaks down Python's core data structures, how to use them, and the best techniques for iterating and comparing data.
 
